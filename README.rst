@@ -3,6 +3,8 @@ Purpose
 
 This repository contains the source code (and static resources, etc.) for a website being built for my upcoming wedding. It is built using Django 1.6. I hope it can serve as a useful example to others who want to build a small Django-powered site. I'm making every effort to follow any best practices of which I'm aware, in particular many described in the book "Two Scoops of Django."
 
+The site is currently somewhere in the mid-to-late stage of local development. The target deployment date is no later than August 2014.
+
 Documentation
 -------------
 
@@ -24,7 +26,7 @@ Repository root
 
 :/util: Utility scripts that are independent of Django.
 
-:requirements.txt: Lists required python packages and their versions. Useful in conjunction with ``pip.`` See ``/docs/installation.rst``
+:requirements: Requirements.txt lists required python packages and their versions. Useful in conjunction with ``pip.`` See ``/docs/installation.rst``
 
 Django Project Directory (/acwedding)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
