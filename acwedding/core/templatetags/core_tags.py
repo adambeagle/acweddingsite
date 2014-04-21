@@ -1,0 +1,88 @@
+import re
+
+from django import template
+from django.core.urlresolvers import reverse
+from django.template.defaultfilters import stringfilter
+
+register = template.Library()
+url_block_pattern = r"\[(.+)\]\((\w+(?:\:\w+)?(?: \w+)*)\)"
+field_list_pattern = r"^:((?:[^\n\r\f\v:]|\\:)+):[\t ]*(\S[^\n\r\v\f]+)[\r]?$"
+
+def _replace_field_list_block(match):
+    """
+    Return an HTML <table> version of the reStructured Text-like field
+    list found in the passed re.match object.
+    
+    See tableifyrst for more information.
+    
+    """
+    heading, data = match.group(1), match.group(2)
+    
+    return '<tr><td>{0}:</td><td>{1}</td></tr>'.format(
+        heading, data)
+
+def _replace_url_tag(match):
+    """
+    Return an HTML <a>-tagged version of the reversed url using the
+    parameters of the re.MatchObject as described in reverseurls.
+    
+    Raises NoReverseMatch if the url cannot be reversed.
+    
+    """
+    text, url_desc = match.group(1), match.group(2)
+    url_desc = url_desc.split(' ')
+    
+    reversed = reverse(url_desc[0], args=url_desc[1:])
+    return '<a href="{0}">{1}</a>'.format(reversed, text)
+
+@register.filter(is_safe=True)
+@stringfilter
+def reverseurls(value):
+    """
+    Replace all occurences of text of format "[text](app:page pk)" with 
+    HTML <a> tags, where the parentheses enclosed portions are reversed
+    into an absolute URL (following standard django rules) and the 
+    bracket-enclosed portion becomes the text between the tags.
+    
+    Example input: '[text](app:page pk)'
+    Example output: '<a href="/app/page/pk">text</a>' 
+    (the exact form of the output url would depend on the project's
+    urlconfs).
+    
+    """
+    return re.sub(url_block_pattern, _replace_url_tag, value)
+
+@register.filter
+@stringfilter
+def rsttotable(value):
+    """
+    Replace all occurences of text of format ":heading: some words \n"
+    with an HTML table, similar to the format and output of reStructured
+    Text's "field lists" as seen at 
+    docutils.sourceforge.net/docs/ref/rst/restructuredtext.html#field-lists
+    
+    Example input: ':Heading: Some words \n'
+    Example output: 
+    '<table><tr><td>Heading</td><td>Some words</td></tr></table>'
+    
+    """
+    split = value.splitlines(keepends=1)
+    inTable = False
+    
+    
+    for i, line in enumerate(split):
+        m = re.match(field_list_pattern, line, re.M)
+        
+        if m:
+            split[i] = '' if inTable else '<table>'
+            split[i] += _replace_field_list_block(m)
+            inTable = True
+            
+        elif inTable:
+            inTable = False
+            split[i - 1] += '</table>\n'
+            
+    if inTable:
+        split[-1] += '</table>\n'
+
+    return ''.join(split)

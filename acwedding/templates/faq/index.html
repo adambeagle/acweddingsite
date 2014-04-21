@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load core_tags %}
+
+{% block page_title %}{% block h2 %}FAQ{% endblock h2 %}{% endblock page_title %}
+
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/faq.css' %}"/>
+{% endblock extra_css %}
+
+{% block content %}
+<div id="primary-text">
+    {% for entry in entry_list %}
+    <div class="faq-entry">
+        <h3 class="faqq">{{ entry.question }}</h3>
+        <p class="faqa">{{ entry.answer|reverseurls|safe}}</p>
+    </div>
+    {% empty %}
+    <p>No FAQ entries at this time.</p>
+    {% endfor %}
+</div>
+{% endblock content %}
+

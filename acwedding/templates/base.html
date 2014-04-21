@@ -1,0 +1,68 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block page_title %}{% endblock %} | Madill-Beagle Wedding</title>
+
+    <link href='http://fonts.googleapis.com/css?family=News+Cycle' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/reset.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}" />
+    {% block extra_css %}{% endblock %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/responsive.css' %}" />
+    
+    
+    {% block extra_js %}{% endblock %}
+</head>
+
+<body>
+    <div id="topbar"><a href="#nav"><div id="open-nav"><span>&equiv;</span></div></a></div>
+    
+    <header>
+        <h1><a href="/">Claire and Adam's Wedding!</a></h1>
+        <span>May 16th, 2015&nbsp;&nbsp;Alpena, MI</span>
+    </header>
+    
+    <nav id="nav">
+        <ul>
+            <li id="close-nav"><a href="#_">(close)</a></li>
+            <li class="has-submenu"><i>about us</i> &#x25BE;
+                <ul>
+                    <li><a href="{% url 'core:detail' 'aboutus' %}" title="About the Bride and Groom">Bride &amp; Groom</a></li>
+                    <li><a href="{% url 'core:detail' 'kittens' %}" title="A page about our babies">The Kittens</a></li>
+                    <li><a href="{% url 'core:detail' 'engagement' %}" title="Engagement">Engagement</a></li>
+                    <li><a href="{% url 'core:detail' 'weddingparty' %}" title="Wedding Party">Wedding party</a></li>
+                </ul>
+            </li>
+            <li class="has-submenu"><i>guest information</i> &#x25BE;
+                <ul>
+                    <li><a href="{% url 'core:detail' 'ceremony' %}" title="Ceremony">Ceremony</a></li>
+                    <li><a href="{% url 'core:detail' 'reception' %}" title="Reception">Reception</a></li>
+                    <li><a href="" title="Area Information">Area Information</a></li>
+                    <li><a href="" title="Lodging Information">Lodging</a></li>
+                    <li><a href="{% url 'core:detail' 'transportation' %}" title="Transportation">Transportation</a></li>
+                </ul>
+            </li>
+            
+            <li><a href="{% url 'faq:index' %}" title="Frequently Asked Questions">FAQ</a></li>
+            <li><a href="http://imgur.com/a/u6KH4" title="Photo Gallery">Gallery</a></li>
+            <li><a href="{% url 'core:detail' 'contact' %}" title="Contact Us">Contact</a></li>
+        </ul>
+    </nav>
+    
+    <div id="primary">
+        <h2>{% block h2 %}{% endblock %}</h2>
+        {% block content %}
+        {% endblock %}
+    </div>
+    <footer>
+        <span><b>{{ days_remaining }} days remaining!</b></span>
+        <span class="dock-right">&copy; 2014 Adam Beagle. <span id="django-plug">Powered by <a href="http://www.djangoproject.com/" title="The Django Project">Django</a>.</span></span>
+    </footer>
+    
+    {% block body_end %}{% endblock %}
+</body>
+
+
+</html>
