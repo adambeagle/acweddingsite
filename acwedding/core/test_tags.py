@@ -1,5 +1,4 @@
 import re
-#from sys import stderr
 
 from .templatetags.core_tags import (field_list_pattern, rsttotable, 
     url_block_pattern)
