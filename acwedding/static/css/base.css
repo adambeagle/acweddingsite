@@ -300,6 +300,16 @@ img.minigallery {
 	right: 0;
 }
 
+.faqa {
+	padding: 0 1em;
+}
+
+.faqq {
+	color: #333;
+	font-weight: bold;
+	font-size: 1.3em;
+}
+
 .has-submenu {
 		border-bottom: 1px solid #888;
 		margin-top: .5em;
