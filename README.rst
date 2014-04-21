@@ -5,15 +5,18 @@ This repository contains the source code (and static resources, etc.) for a webs
 
 The site is currently somewhere in the mid-to-late stage of local development. The target deployment date is no later than August 2014.
 
+
 Documentation
 -------------
 
-Project-wide documentation is located in the docs/ directory at the repository root. Documentation for individual modules is found in their respective files.
+Project-wide documentation is located in the ``docs/`` directory at the repository root. Documentation for individual modules is found in their respective files.
+
 
 Installation
 ------------
 
-See docs/installation.rst
+See ``docs/installation.rst``
+
 
 Layout
 ------
@@ -40,3 +43,9 @@ Django Project Directory (/acwedding)
 :/googlemaps: Django app that facilitates embedding Google maps (via Google Maps JavaScript API v3) into pages. Maps can be simple maps with a few markers or more elaborate with animated markers and info windows for each marker.
 
 :/templates: Templates from all apps are in this directory. The directory structure and naming patterns are modeled after those found in "Two Scoops of Django" 12.2.1.
+
+
+Legal
+-----
+
+See ``docs/LICENSE.txt`` for license information. 
