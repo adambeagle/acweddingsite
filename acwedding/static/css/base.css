@@ -63,7 +63,7 @@ header {
 	background-image: url('../images/ui/banner.png');
 	background-repeat: no-repeat;
 	background-size: cover;
-	margin-top: 2.5em;
+	margin-top: 2.3em;
 	padding:  .5em 0;
 	text-align: center;
 	border-radius: 0;
@@ -127,24 +127,28 @@ nav {
 	padding-bottom: 1em;
 	overflow: hidden;
 	transition: max-height .6s;
+	-moz-transition: max-height .6s;
+	-o-transition: max-height: .6s;
 	-webkit-transition: max-height .6s;
 }
 
-nav i {
-	margin-bottom: .3em;
+#nav:target {
+	max-height: 100%;
+	z-index: 9002;
 }
 
 nav>ul>li {
 	float: left;
 	min-width: 29%;
-	margin-top: .5em;
+	margin-top: .3em;
 	margin-left: .8em;
 }
 
 nav ul a {
 	font-family: Oxygen, sans-serif;
 	color: #CCC;
-	padding: .3em .6em;
+	padding: .3em .0;
+	padding-left: .2em;
 	display: block;
 }
 
@@ -163,9 +167,9 @@ nav>div {
 
 }
 
-#nav:target {
-	max-height: 100%;
-	z-index: 9002;
+.subnav-label {
+	display: inline-block;
+	padding-bottom: .3em;
 }
 
 /*==============
