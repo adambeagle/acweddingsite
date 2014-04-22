@@ -16,7 +16,7 @@
 </head>
 
 <body>
-    <div id="topbar"><a href="#nav"><div id="open-nav"><span>&equiv;</span></div></a></div>
+    <div class="topbar"><a href="#nav" class="hamburger">&equiv;</a></div>
     
     <header>
         <h1><a href="/">Claire and Adam's Wedding!</a></h1>
@@ -24,8 +24,8 @@
     </header>
     
     <nav id="nav">
+        <div id="close-nav"><a href="#_" class="hamburger">&equiv;</a></div>
         <ul>
-            <li id="close-nav"><a href="#_">(close)</a></li>
             <li class="has-submenu"><i>about us</i> &#x25BE;
                 <ul>
                     <li><a href="{% url 'core:detail' 'aboutus' %}" title="About the Bride and Groom">Bride &amp; Groom</a></li>
@@ -44,9 +44,13 @@
                 </ul>
             </li>
             
-            <li><a href="{% url 'faq:index' %}" title="Frequently Asked Questions">FAQ</a></li>
-            <li><a href="http://imgur.com/a/u6KH4" title="Photo Gallery">Gallery</a></li>
-            <li><a href="{% url 'core:detail' 'contact' %}" title="Contact Us">Contact</a></li>
+            <li class="toplevelnav">
+                <ul>
+                    <li><a href="{% url 'faq:index' %}" title="Frequently Asked Questions">FAQ</a></li>
+                    <li><a href="http://imgur.com/a/u6KH4" title="Photo Gallery">Gallery</a></li>
+                    <li><a href="{% url 'core:detail' 'contact' %}" title="Contact Us">Contact</a></li>
+                </ul>
+            </li>
         </ul>
     </nav>
     
