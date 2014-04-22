@@ -112,35 +112,39 @@ header a:hover {
 	padding: 0 .25em;
 	color: white;
 	font-family: serif;
-	font-size: 2.8em;
+	font-size: 2.3em;
 	background-color: #2A2A2A;
 }
 
 nav {
-	position: absolute;
+	position: fixed;
 	width: 100%;
 	max-height: 0;
 	top: 0;
 	z-index: 8999;
 	background-color: #222;
-	color: #888;
+	color: #999;
 	padding-bottom: 1em;
 	overflow: hidden;
-	transition: max-height .8s;
-	-webkit-transition: max-height .8s;
-	
+	transition: max-height .6s;
+	-webkit-transition: max-height .6s;
+}
+
+nav i {
+	margin-bottom: .3em;
 }
 
 nav>ul>li {
 	float: left;
-	min-width: 30%;
+	min-width: 29%;
 	margin-top: .5em;
 	margin-left: .8em;
 }
 
 nav ul a {
-	color: #AAA;
-	padding: .4em .6em;
+	font-family: Oxygen, sans-serif;
+	color: #CCC;
+	padding: .3em .6em;
 	display: block;
 }
 
@@ -160,7 +164,7 @@ nav>div {
 }
 
 #nav:target {
-	max-height: 250%;
+	max-height: 100%;
 	z-index: 9002;
 }
 
