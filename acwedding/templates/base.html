@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block page_title %}{% endblock %} | Madill-Beagle Wedding</title>
 
-    <link href='http://fonts.googleapis.com/css?family=News+Cycle' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=News+Cycle|Oxygen' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="{% static 'css/reset.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}" />
     {% block extra_css %}{% endblock %}
@@ -16,7 +16,7 @@
 </head>
 
 <body>
-    <div id="topbar"><a href="#nav"><div id="open-nav"><span>&equiv;</span></div></a></div>
+    <div class="topbar"><a href="#nav" class="hamburger">&equiv;</a></div>
     
     <header>
         <h1><a href="/">Claire and Adam's Wedding!</a></h1>
@@ -24,9 +24,9 @@
     </header>
     
     <nav id="nav">
+        <div id="close-nav"><a href="#_" class="hamburger">&equiv;</a></div>
         <ul>
-            <li id="close-nav"><a href="#_">(close)</a></li>
-            <li class="has-submenu"><i>about us</i> &#x25BE;
+            <li class="subnav"><i class="subnav-label">about us</i> &#x25BE;
                 <ul>
                     <li><a href="{% url 'core:detail' 'aboutus' %}" title="About the Bride and Groom">Bride &amp; Groom</a></li>
                     <li><a href="{% url 'core:detail' 'kittens' %}" title="A page about our babies">The Kittens</a></li>
@@ -34,7 +34,7 @@
                     <li><a href="{% url 'core:detail' 'weddingparty' %}" title="Wedding Party">Wedding party</a></li>
                 </ul>
             </li>
-            <li class="has-submenu"><i>guest information</i> &#x25BE;
+            <li class="subnav"><i class="subnav-label">guest information</i> &#x25BE;
                 <ul>
                     <li><a href="{% url 'core:detail' 'ceremony' %}" title="Ceremony">Ceremony</a></li>
                     <li><a href="{% url 'core:detail' 'reception' %}" title="Reception">Reception</a></li>
@@ -44,9 +44,13 @@
                 </ul>
             </li>
             
-            <li><a href="{% url 'faq:index' %}" title="Frequently Asked Questions">FAQ</a></li>
-            <li><a href="http://imgur.com/a/u6KH4" title="Photo Gallery">Gallery</a></li>
-            <li><a href="{% url 'core:detail' 'contact' %}" title="Contact Us">Contact</a></li>
+            <li class="toplevelnav">
+                <ul>
+                    <li><a href="{% url 'faq:index' %}" title="Frequently Asked Questions">FAQ</a></li>
+                    <li><a href="http://imgur.com/a/u6KH4" title="Photo Gallery">Gallery</a></li>
+                    <li><a href="{% url 'core:detail' 'contact' %}" title="Contact Us">Contact</a></li>
+                </ul>
+            </li>
         </ul>
     </nav>
     

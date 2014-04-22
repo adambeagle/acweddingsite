@@ -1,3 +1,18 @@
+@media screen and (max-width: 319px) {
+	
+	nav {
+		/* Makes nav scrollable so all links are able to be viewed, 
+		but clicking menu button will force focus to top of page.
+		This is not desirable by default and only used for this absurdly
+		small width where it may be necessary. */
+		position: absolute;
+	}
+	
+	#nav:target {
+		max-height: 300%;
+	}
+}
+
 @media screen and (min-width: 480px) {
 	body {
 		font-size: 1em;
@@ -7,8 +22,8 @@
 		font-size: 3.2em;
 	}
 	
-	nav {
-		font-size: 90%;
+	.hamburger {
+		font-size: 2.6em;
 	}
 	
 	.faq-entry {
@@ -23,11 +38,12 @@
 	.only-smallscreen {
 		display: none;
 	}
+
 }
 
-@media screen and (min-width: 640px) {
-	nav {
-		font-size: 100%;
+@media screen and (min-width: 600px) {
+	#footer-extras {
+		display: inline;
 	}
 }
 
@@ -45,17 +61,22 @@
 		font-size: 1.5em;
 	}
 	
-	#footer-extras {
-		display: inline;
-	}
-	
-	#open-nav, #close-nav {
+	#close-nav {
 		display: none;
 	}
 	
-	#primary {
-		float: left;
-		margin: 1em 0 2em 1em;
+	.topbar {
+		display: none;
+	}
+	
+	.subnav {
+		margin-right: .5em;
+		padding-bottom: .5em;
+		border-bottom: 1px solid;
+	}
+	
+	nav>ul>li {
+	float: none;
 	}
 	
 	h1 {
@@ -65,15 +86,15 @@
 	#primary {
 		width: 70%;
 		border-radius: .7em;
+		float: left;
+		margin: 1em 0 2em 1em;
 	}
 	
 	nav {
-		width: 40%;
+		padding: .5em 0;
+		max-height: none;
 		position: static;
-		display: block;
-		opacity: 1;
-		z-index: 1000; /* Needed for pages with embedded maps */
-		list-style: none;
+		z-index: 1000; /* Keep this high for pages with embedded maps */
 		width: 20%;
 		min-width: 11em;
 		float: left;
@@ -81,8 +102,9 @@
 		border-radius: 0 .4em .4em 0;
 	}
 	
-	nav a {
-		padding: .8em 1em;
+	nav ul a {
+		padding: .6em 1em;
+		font-size: 105%;
 	}
 	
 	div.minigallery {
