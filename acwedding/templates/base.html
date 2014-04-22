@@ -12,7 +12,6 @@
     {% block extra_css %}{% endblock %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/responsive.css' %}" />
     
-    
     {% block extra_js %}{% endblock %}
 </head>
 
@@ -58,11 +57,10 @@
     </div>
     <footer>
         <span><b>{{ days_remaining }} days remaining!</b></span>
-        <span class="dock-right">&copy; 2014 Adam Beagle. <span id="django-plug">Powered by <a href="http://www.djangoproject.com/" title="The Django Project">Django</a>.</span></span>
+        <span class="dock-right">&copy; 2014 Adam Beagle. <span id="footer-extras">Powered by <a href="http://www.djangoproject.com/" title="The Django Project">Django</a>. View source <a href="https://github.com/adambeagle/acweddingsite">at Github.</a></span></span>
     </footer>
     
     {% block body_end %}{% endblock %}
 </body>
-
 
 </html>
