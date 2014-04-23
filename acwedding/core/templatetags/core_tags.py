@@ -80,9 +80,10 @@ def rsttotable(value):
             
         elif inTable:
             inTable = False
-            split[i - 1] += '</table>\n'
+            split[i - 1] += '</table>'
             
     if inTable:
-        split[-1] += '</table>\n'
+        split[-1] += '</table>'
 
     return ''.join(split)
+    
