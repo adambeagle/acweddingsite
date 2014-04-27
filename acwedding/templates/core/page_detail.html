@@ -7,54 +7,54 @@
 
 {% block extra_css %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/lightbox.css' %}" />
-{% if has_map %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/gmap.css' %}" />
-{% endif %}
+    {% if has_map %}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/gmap.css' %}" />
+    {% endif %}
 {% endblock extra_css %}
 
 {% block content %}
-<img src="{% static 'images/subheaders/'|add:page.subheaderimage.filename %}" alt="{{ page.subheaderimage.alt_text }}">
-{% if page.subheaderimage.subtitle %}
-<span class="img_subtitle block">{{ page.subheaderimage.subtitle }}</span>
-{% endif %}
+    <img src="{% static 'images/subheaders/'|add:subheader_image.filename %}" alt="{{ subheader_image.alt_text }}">
+    {% if subheader_image.subtitle %}
+        <span class="img_subtitle block">{{ subheader_image.subtitle }}</span>
+    {% endif %}
 
-<div id="primary-text">
-{% for section in section_list %}
-    <section>
-        <h3>{{ section.heading }}</h3>
-        
-        {{ section.content|removetags:'script'|safe|urlize|reverseurls|rsttotable|safe|linebreaks }}
-        
-        {% if section.minigallery %}
-            <div class="minigallery">
-                <ul>
-                {% for image in section.minigallery.images.all %}
-                    <li><a href="#img{{ image.id }}"><img class="minigallery" src="{% static 'images/tn/'|add:image.filename|add:'.thumbnail' %}" alt="{{ image.caption }}" title="{{ image.caption }}"/></a></li>
-                {% endfor %}
-                </ul>
-            </div>
-        {% endif %}
-        
-        {% if section.map %}
-            {% simple_map section.map %}
-        {% endif %}
-    </section>
-{% endfor %}
-</div>
+    <div id="primary-text">
+    {% for section in section_list %}
+        <section>
+            <h3>{{ section.heading }}</h3>
+            
+            {{ section.content|removetags:'script'|safe|urlize|reverseurls|rsttotable|safe|linebreaks }}
+            
+            {% if section.minigallery %}
+                <div class="minigallery">
+                    <ul>
+                    {% for image in section.minigallery.images.all %}
+                        <li><a href="#img{{ image.id }}"><img class="minigallery" src="{% static 'images/tn/'|add:image.filename|add:'.thumbnail' %}" alt="{{ image.caption }}" title="{{ image.caption }}"/></a></li>
+                    {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+            
+            {% if section.map %}
+                {% simple_map section.map %}
+            {% endif %}
+        </section>
+    {% endfor %}
+    </div>
 {% endblock %}
 
 
 {% block body_end %}
-{% for section in section_list %}
-    {% if section.minigallery %}
-        {% for image in section.minigallery.images.all %}
-            <a href="#_" class="lightbox" id="img{{ image.id }}">
-                <img src="{% static 'images/minigallery/'|add:image.filename %}">
-                <p>{{ image.caption }}</p>
-            </a>
-        {% endfor %}
-    {% endif %}
+    {% for section in section_list %}
+        {% if section.minigallery %}
+            {% for image in section.minigallery.images.all %}
+                <a href="#_" class="lightbox" id="img{{ image.id }}">
+                    <img src="{% static 'images/minigallery/'|add:image.filename %}">
+                    <p>{{ image.caption }}</p>
+                </a>
+            {% endfor %}
+        {% endif %}
 
-{% endfor %}
+    {% endfor %}
 {% endblock body_end %}
 

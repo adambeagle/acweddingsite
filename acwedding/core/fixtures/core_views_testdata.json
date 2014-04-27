@@ -7,6 +7,13 @@
   "model": "core.page"
 },
 {
+  "pk": "engagement", 
+  "model": "core.page", 
+  "fields": {
+    "title": "Our Engagement"
+  }
+},
+{
   "fields": {
     "alt_text": "Naveen", 
     "subtitle": "Marriage would be nice, yes?", 
@@ -17,13 +24,89 @@
   "model": "core.subheaderimage"
 },
 {
+  "pk": 4, 
+  "model": "core.subheaderimage", 
   "fields": {
-    "content": "Welcome to Claire and Adam's wedding site! In the coming months as we plan and then count down to our wedding, this site will be continually updated. It is designed to function as the first stop for any important information or tips one might need about our wedding.\r\n\r\nDetails about dates, times, directions, lodging and transportation information, our registry, and much more will become available here as we get further into planning, so keep checking back!\r\n\r\nIf you run into any problems using this site, or you suspect something doesn't look or work as intended, Adam would greatly appreciate it if you would [let him know.](core:detail contact)\r\n\r\nFor now, a good place to start is the [FAQ page.](faq:index)", 
-    "heading": "Introduction", 
-    "map": null, 
-    "page": "welcome"
-  }, 
+    "subtitle": "\"Elephants... by the elephants... elephant crossing and then elephants.\" -Claire", 
+    "page": "engagement", 
+    "full_path": "/home/adam/dev/acwedding_project/acwedding/static/images/subheaders/engagement.jpg", 
+    "alt_text": "Engagement photo"
+  }
+},
+{
   "pk": 1, 
-  "model": "core.section"
+  "model": "core.section", 
+  "fields": {
+    "page": "welcome", 
+    "content": "Welcome to Claire and Adam's wedding site! In the coming months as we plan and then count down to our wedding, this site will be continually updated. It is designed to function as the first stop for any important information or tips one might need about our wedding.\r\n\r\nDetails about dates, times, directions, lodging and transportation information, our registry, and much more will become available here as we get further into planning, so keep checking back!\r\n\r\nIf you run into any problems using this site, or you suspect something doesn't look or work as intended, Adam would greatly appreciate it if you would [let him know.](core:detail contact)\r\n\r\nFor now, a good place to start is the [FAQ page.](faq:index)", 
+    "map": null, 
+    "heading": "Introduction"
+  }
+},
+{
+  "pk": 6, 
+  "model": "core.section", 
+  "fields": {
+    "page": "engagement", 
+    "content": ":Date: August 15, 2013\r\n:Location: Metroparks Zoo, Cleveland, OH\r\n:Why the Zoo?: Claire loves elephants!", 
+    "map": null, 
+    "heading": "The Basics"
+  }
+},
+{
+  "pk": 7, 
+  "model": "core.section", 
+  "fields": {
+    "page": "engagement", 
+    "content": "For a long time, a joke amongst ourselves was that the perfect engagement would somehow involve elephants, because Claire loves them so much. Claire needed to be in Cleveland early on August 16 for a law seminar, so we decided to make a short trip out of it and go to Cleveland on the 15th. We planned to go to the Cleveland Metroparks Zoo that day for something to do. Seeing an opportunity to accomplish the fabled elephant proposal, Adam brought the ring (which he'd bought a few weeks prior) in a special pink elephant ring box.\r\n\r\nThe start of a string of coincidences that made the day especially memorable was \"Colonel Hathi's March\" (aka \"the elephant song from The Jungle Book\") being picked on shuffle from 1000s of songs just as we drove into the zoo entrance.", 
+    "map": null, 
+    "heading": "The Full Story"
+  }
+},
+{
+  "pk": 8, 
+  "model": "core.section", 
+  "fields": {
+    "page": "engagement", 
+    "content": "The engagement ring was inspired by the 2009 Disney film \"The Princess and the Frog,\" and was custom-designed by Adam. The center stone is a diamond, the inner green amethyst, and the outer green tourmaline. The ring box was pink and elephant shaped.", 
+    "map": null, 
+    "heading": "The Ring"
+  }
+},
+{
+  "pk": 1, 
+  "model": "core.minigalleryimage", 
+  "fields": {
+    "full_path": "/home/adam/dev/acwedding_project/acwedding/static/images/minigallery/ring_box1.jpg", 
+    "caption": "The ring box, closed."
+  }
+},
+{
+  "pk": 2, 
+  "model": "core.minigalleryimage", 
+  "fields": {
+    "full_path": "/home/adam/dev/acwedding_project/acwedding/static/images/minigallery/ring_box2.jpg", 
+    "caption": "The ring box with the ring inside."
+  }
+},
+{
+  "pk": 3, 
+  "model": "core.minigalleryimage", 
+  "fields": {
+    "full_path": "/home/adam/dev/acwedding_project/acwedding/static/images/minigallery/ring_claire.jpg", 
+    "caption": "Claire and the ring (at Menchies!) shortly after our engagement."
+  }
+},
+{
+  "pk": "ring", 
+  "model": "core.minigallery", 
+  "fields": {
+    "images": [
+      1, 
+      2, 
+      3
+    ], 
+    "section": 8
+  }
 }
 ]
