@@ -7,7 +7,7 @@
 
 {% block extra_css %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/lightbox.css' %}" />
-{% if page.includes_map %}
+{% if has_map %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/gmap.css' %}" />
 {% endif %}
 {% endblock extra_css %}
@@ -19,7 +19,7 @@
 {% endif %}
 
 <div id="primary-text">
-{% for section in page.section_set.all %}
+{% for section in section_list %}
     <section>
         <h3>{{ section.heading }}</h3>
         
@@ -43,8 +43,9 @@
 </div>
 {% endblock %}
 
+
 {% block body_end %}
-{% for section in page.section_set.all %}
+{% for section in section_list %}
     {% if section.minigallery %}
         {% for image in section.minigallery.images.all %}
             <a href="#_" class="lightbox" id="img{{ image.id }}">

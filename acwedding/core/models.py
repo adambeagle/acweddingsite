@@ -11,14 +11,6 @@ class Page(models.Model):
 
     def __str__(self):
         return self.name
-        
-    @property
-    def includes_map(self):
-        for section in self.section_set.all():
-            if section.map:
-                return True
-                
-        return False
 
 class SubheaderImage(models.Model):
     page = models.OneToOneField(Page)
