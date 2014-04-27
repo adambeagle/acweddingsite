@@ -1,0 +1,29 @@
+[
+{
+  "fields": {
+    "title": "Welcome"
+  }, 
+  "pk": "welcome", 
+  "model": "core.page"
+},
+{
+  "fields": {
+    "alt_text": "Naveen", 
+    "subtitle": "Marriage would be nice, yes?", 
+    "full_path": "/home/adam/dev/acwedding_project/acwedding/static/images/subheaders/naveen.png", 
+    "page": "welcome"
+  }, 
+  "pk": 1, 
+  "model": "core.subheaderimage"
+},
+{
+  "fields": {
+    "content": "Welcome to Claire and Adam's wedding site! In the coming months as we plan and then count down to our wedding, this site will be continually updated. It is designed to function as the first stop for any important information or tips one might need about our wedding.\r\n\r\nDetails about dates, times, directions, lodging and transportation information, our registry, and much more will become available here as we get further into planning, so keep checking back!\r\n\r\nIf you run into any problems using this site, or you suspect something doesn't look or work as intended, Adam would greatly appreciate it if you would [let him know.](core:detail contact)\r\n\r\nFor now, a good place to start is the [FAQ page.](faq:index)", 
+    "heading": "Introduction", 
+    "map": null, 
+    "page": "welcome"
+  }, 
+  "pk": 1, 
+  "model": "core.section"
+}
+]
