@@ -5,8 +5,10 @@ from django.core.urlresolvers import reverse
 from django.template.defaultfilters import stringfilter
 
 register = template.Library()
-url_block_pattern = r"\[(.+)\]\((\w+(?:\:\w+)?(?: \w+)*)\)"
-field_list_pattern = r"^:((?:[^\n\r\f\v:]|\\:)+):[\t ]*(\S[^\n\r\v\f]+)[\r]?$"
+
+url_block_pattern = r"\[(.+?|\\\])\]\((\w+(?:\:\w+)?(?: \w+)*)\)"
+field_list_pattern = (
+    r"^(?:<p>)?:((?:[^\n\r\f\v:]|\\:)+):[\t ]*(\S[^\n\r\v\f]+)(?:</p>|<br />)?\r?$")
 
 def _replace_field_list_block(match):
     """
@@ -34,6 +36,10 @@ def _replace_url_tag(match):
     
     reversed = reverse(url_desc[0], args=url_desc[1:])
     return '<a href="{0}">{1}</a>'.format(reversed, text)
+    
+def linebreakshtmlaware(self):
+    """ """
+    return
 
 @register.filter(is_safe=True)
 @stringfilter
@@ -56,10 +62,22 @@ def reverseurls(value):
 @stringfilter
 def rsttotable(value):
     """
-    Replace all occurences of text of format ":heading: some words \n"
+    Replace all occurences of text of format ":heading: some text \n"
     with an HTML table, similar to the format and output of reStructured
     Text's "field lists" as seen at 
     docutils.sourceforge.net/docs/ref/rst/restructuredtext.html#field-lists
+    
+    The block must occur at the beginning of a line (or immediately following
+    a <p> tag if linebreaks was used -- see below).
+    
+    Multiple sequential lines of format ":heading: text" will become
+    rows of a single table.
+    
+    If the 'linebreaks' filter is to be used, be sure to place the field
+    list block within value in it's own "paragraph," i.e. TWO newlines should
+    precede and follow the block. <p> tags surrounding the resulting table
+    will be removed, but <br /> tags will not. Linebreaks should occur before
+    this filter in a chain, otherwise the table will be wrapped in <p> tags.
     
     Example input: ':Heading: Some words \n'
     Example output: 
