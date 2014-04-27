@@ -1,6 +1,7 @@
 from django.db import models
 
 class Entry(models.Model):
+    
     # Note id is explicit here so it can be easily edited via the
     # admin site. The order questions appear is based on the id
     # field; It's likely a user may want to edit that order.
