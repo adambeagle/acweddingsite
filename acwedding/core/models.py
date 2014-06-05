@@ -5,13 +5,14 @@ from django.conf import settings
 
 from googlemaps.models import SimpleMap
 
+
 class Page(models.Model):
     name = models.CharField(max_length=25, primary_key=True)
     title = models.CharField(max_length=50)
 
     def __str__(self):
         return self.name
-
+        
 class SubheaderImage(models.Model):
     page = models.OneToOneField(Page)
     full_path = models.FilePathField(path=settings.BASE_DIR.child(
@@ -20,6 +21,9 @@ class SubheaderImage(models.Model):
         max_length=200)
     alt_text = models.CharField(max_length=50, blank=True)
     subtitle = models.CharField(max_length=100, blank=True)
+    
+    def __str__(self):
+        return self.filename
     
     @property
     def filename(self):
@@ -57,3 +61,6 @@ class MiniGallery(models.Model):
     
     def __str__(self):
         return self.name
+        
+    class Meta:
+        verbose_name_plural = 'Mini Galleries'

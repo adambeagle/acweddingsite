@@ -28,11 +28,14 @@ class Marker(models.Model):
     
     def __str__(self):
         return self.full_name
+        
+    class Meta:
+        ordering = ['name']
 
 class Map(models.Model):
     name = models.CharField(max_length=25, primary_key=True)
-    startLat = models.FloatField()
-    startLong = models.FloatField()
+    startLat = models.FloatField(verbose_name='Starting Latitude')
+    startLong = models.FloatField(verbose_name='Starting Longitude')
     startZoom = models.PositiveSmallIntegerField()
     
     def __str__(self):

@@ -23,7 +23,7 @@
         <section>
             <h3>{{ section.heading }}</h3>
             
-            {{ section.content|removetags:'script'|safe|urlize|reverseurls|rsttotable|safe|linebreaks }}
+            {{ section.content|removetags:'script'|safe|urlize|reverseurls|rsttotable|bullets|safe|linebreaks }}
             
             {% if section.minigallery %}
                 <div class="minigallery">

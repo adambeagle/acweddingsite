@@ -6,9 +6,12 @@ from django.template.defaultfilters import stringfilter
 
 register = template.Library()
 
+ul_pattern = r"^[*][ \t](\S[^\r\n]*)[\r]?$"
 url_block_pattern = r"\[(.+?|\\\])\]\((\w+(?:\:\w+)?(?: \w+)*)\)"
 field_list_pattern = (
-    r"^(?:<p>)?:((?:[^\n\r\f\v:]|\\:)+):[\t ]*(\S[^\n\r\v\f]+)(?:</p>|<br />)?\r?$")
+    r"^(?:<p>)?:((?:[^\n\r\f\v:]|\\:)+):[\t ]*(\S[^\n\r\v\f]+)" +
+    r"(?:</p>|<br />)?\r?$")
+
 
 def _replace_field_list_block(match):
     """
@@ -40,6 +43,34 @@ def _replace_url_tag(match):
 def linebreakshtmlaware(self):
     """ """
     return
+    
+@register.filter(is_safe=True)
+@stringfilter
+def bullets(value):
+    """
+    """
+    split = value.splitlines(keepends=1)
+    inList = False
+    
+    for i, line in enumerate(split):
+        m = re.match(ul_pattern, line)
+        
+        if m and not inList:
+            split[i] = '<ul><li>{0}</li>'.format(m.group(1))
+            inList = True
+        elif m:
+            split[i - 1] = ''
+            split[i] = '<li>{0}</li>'.format(m.group(1))
+        elif inList and line.strip():
+            split[i - 2] += '</ul>'
+            split[i - 1] = ''
+            inList = False
+            
+    if inList:
+        split[-1] += '</ul>'
+
+    return ''.join(split)
+            
 
 @register.filter(is_safe=True)
 @stringfilter

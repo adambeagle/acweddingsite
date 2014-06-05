@@ -38,9 +38,15 @@
                 <ul>
                     <li><a href="{% url 'core:detail' 'ceremony' %}" title="Ceremony">Ceremony</a></li>
                     <li><a href="{% url 'core:detail' 'reception' %}" title="Reception">Reception</a></li>
-                    <li><a href="" title="Area Information">Area Information</a></li>
-                    <li><a href="" title="Lodging Information">Lodging</a></li>
+                    
                     <li><a href="{% url 'core:detail' 'transportation' %}" title="Transportation">Transportation</a></li>
+                </ul>
+            </li>
+            <li class="subnav"><i class="subnav-label">area information</i> &#x25BE;
+                <ul>
+                    <li><a href="{% url 'tourisminfo:attractions_index' %}" title="Attractions and Food">Attractions &amp; Food</a></li>
+                    <li><a href="{% url 'core:detail' 'history' %}" title="History">History</a></li>
+                    <li><a href="" title="Hotel, motel, and cabin options">Lodging</a></li>
                 </ul>
             </li>
             
@@ -56,6 +62,7 @@
     
     <div id="primary">
         <h2>{% block h2 %}{% endblock %}</h2>
+
         {% block content %}
         {% endblock %}
     </div>

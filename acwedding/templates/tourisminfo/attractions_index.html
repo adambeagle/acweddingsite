@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block page_title %}{% block h2 %}Alpena Area Attractions &amp; Food{% endblock h2 %}{% endblock page_title %}
+
+{% block extra_js %}
+<script src="{% static 'js/jquery-1.11.1.min.js' %}" type="text/javascript"></script>
+{% endblock extra_js %}
+
+{% block content %}
+    <p>Click a checkbox to filter list. Click anywhere in a list item to view more information.</p>
+    
+    <div class="center padding-lite">
+        <input type="checkbox" name="attractions" checked="true">Things to do
+        <input type="checkbox" name="food" checked="true">Food &amp; Drink
+        <input type="checkbox" name="lighthouses" checked="true">Lighthouses
+    </div>
+    
+    <div id="point-of-interest-list">
+    {% for poi in poi_list %}
+        <a href="{% url 'tourisminfo:detail' poi.name %}" alt="More information">
+            <div class="point-of-interest-listing {{ poi.category }}{% if poi.highlight %} point-of-interest-highlight{% endif %}">
+                <img src="{% static 'images/map_icons/'|add:poi.marker.icon.filename %}">
+                {% if poi.highlight %}<img src="{% static 'images/map_icons/mickey_thumb.png' %}" title="A Claire and Adam favorite&#8482;">{% endif %}
+                <h4>{{ poi.full_name }}</h4>
+                <p>{{ poi.short_description }}</p>
+                <br>
+            </div>
+        </a>
+    {% empty %}
+        <p>No attraction or food information at this time.</p>
+    {% endfor %}
+    </div>
+
+{% endblock content %}
+
+{% block body_end %}
+<script type="text/javascript">
+    $(document).ready(function() {
+        $(':checkbox').change(function() {
+            if(this.checked) {
+                $('.'+this.name).show();
+            }
+            else {
+                $('.'+this.name).hide();
+            }
+        });
+    });
+</script>
+{% endblock body_end %}

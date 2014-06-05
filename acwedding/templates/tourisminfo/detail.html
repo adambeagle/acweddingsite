@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load core_tags %}
+{% load googlemaps_tags %}
+
+{% block page_title %}{% block h2 %}{{ poi.full_name }}{% endblock h2 %}{% endblock page_title%}
+
+{% block extra_css %}<link rel="stylesheet" type="text/css" href="{% static 'css/gmap.css' %}" />{% endblock %}
+
+{% block content %}
+
+<a href="{% url 'tourisminfo:attractions_index' %}" class="below-h2">Back to attractions index</a>
+
+{% if poi.image %}
+<img src="{% static 'images/tourisminfo/'|add:poi.image.filename %}">
+    {% if poi.image.subtitle %}
+        <span class="img_subtitle block">{{ poi.image.subtitle }}</span>
+    {% endif %}
+{% endif %}
+
+<div id="primary-text">
+    <section>
+        <h3>Description</h3>
+        <p>{{ poi.description|safe|reverseurls|linebreaks }}<p>
+    </section>
+    
+    {% if poi.review %}
+    <section>
+        <h3>Adam &amp; Claire's Review</h3>
+        <p>{{ poi.review|safe|reverseurls|linebreaks }}</p>
+    </section>
+    {% endif %}
+    
+    <section>
+        <h3>External Links</h3>
+        <a class="block" href="{{ poi.link }}">{{ poi.link_description }}</a>
+    </section>
+
+    <section>
+        <h3>Map</h3>
+
+        <div class="gmap-wrapper center">
+            <div id="map_canvas"></div>
+            <span class="block">Note: The ceremony and reception sites are indicated with pink markers.</span>
+            <span class="block"><a href="https://www.google.com/maps/place/{{ poi.marker.lat|linkablelatitude }}+{{ poi.marker.long|linkablelongitude }}">Directions at Google Maps</a></span>
+        </div>
+        <p class="only-smallscreen"><em><a href="https://www.google.com/maps/place/{{ poi.marker.lat|linkablelatitude }}+{{ poi.marker.long|linkablelongitude }}">Directions at Google Maps.</a></em> Map available on desktop version of site.</p>
+    </section>
+
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxCuyULS1j9utodXGtNfFQs1fpe0nwoXM&sensor=false"></script>
+    <script type="text/javascript">
+    function initialize() {
+        var map_canvas = document.getElementById('map_canvas');
+        var map_options = {
+            center: new google.maps.LatLng({{ poi.marker.lat }}, {{ poi.marker.long }}),
+            zoom: 12,
+            mapTypeControl: true,
+            mapTypeControlOptions: {style: google.maps.MapTypeControlStyle.DROPDOWN_MENU},
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+        
+        var map = new google.maps.Map(map_canvas, map_options);
+        
+        var {{ poi.marker.name }}Marker = new google.maps.Marker({
+            position: new google.maps.LatLng({{ poi.marker.lat }}, {{ poi.marker.long }}),
+            map: map,
+            title: "{{ poi.marker.full_name|safe }}",
+            icon: "{% static 'images/map_icons/'|add:poi.marker.icon.filename %}"
+        });
+        
+        var ceremonyMarker = new google.maps.Marker({
+            position: new google.maps.LatLng({{ ceremonyMarker.lat }}, {{ ceremonyMarker.long }}),
+            map: map,
+            title: "{{ ceremonyMarker.full_name }}",
+            icon: "{% static 'images/map_icons/'|add:ceremonyMarker.icon.filename %}"
+        });
+        
+        var receptionMarker = new google.maps.Marker({
+            position: new google.maps.LatLng({{ receptionMarker.lat }}, {{ receptionMarker.long }}),
+            map: map,
+            title: "{{ receptionMarker.full_name }}",
+            icon: "{% static 'images/map_icons/'|add:receptionMarker.icon.filename %}"
+        });
+
+    }
+    google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+</div>
+
+
+
+
+{% endblock content %}

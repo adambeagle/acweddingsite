@@ -81,6 +81,7 @@ INSTALLED_APPS = (
     'core',
     'faq',
     'googlemaps',
+    'tourisminfo',
 )
 
 # A sample logging configuration. The only tangible logging

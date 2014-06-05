@@ -14,4 +14,5 @@ class Entry(models.Model):
         
     class Meta:
         ordering = ['id']
+        verbose_name_plural = 'Entries'
 
