@@ -11,6 +11,7 @@ class SubheaderImageInline(admin.TabularInline):
     model = SubheaderImage
 
 class PageAdmin(admin.ModelAdmin):
+    prepopulated_fields = {'slug' : ('title', )}
     inlines = [SubheaderImageInline, SectionInline]
 
 admin.site.register(MiniGallery)

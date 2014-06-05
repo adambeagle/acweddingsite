@@ -9,9 +9,10 @@ from googlemaps.models import SimpleMap
 class Page(models.Model):
     name = models.CharField(max_length=25, primary_key=True)
     title = models.CharField(max_length=50)
+    slug = models.SlugField()
 
     def __str__(self):
-        return self.name
+        return self.title
         
 class SubheaderImage(models.Model):
     page = models.OneToOneField(Page)

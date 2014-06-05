@@ -9,5 +9,5 @@ urlpatterns = patterns('',
     url(r'^$', RedirectView.as_view(
         url=reverse_lazy('core:detail', args=['welcome']))),
         
-    url(r'^(?P<pk>\w+)/$', PageDetailView.as_view(), name="detail"),
+    url(r'^(?P<slug>[\w-]+)/$', PageDetailView.as_view(), name="detail"),
 )
