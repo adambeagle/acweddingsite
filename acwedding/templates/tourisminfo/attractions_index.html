@@ -18,7 +18,7 @@
     
     <div id="point-of-interest-list">
     {% for poi in poi_list %}
-        <a href="{% url 'tourisminfo:detail' poi.name %}" alt="More information">
+        <a href="{% url 'tourisminfo:detail' poi.slug %}" alt="More information">
             <div class="point-of-interest-listing {{ poi.category }}{% if poi.highlight %} point-of-interest-highlight{% endif %}">
                 <img src="{% static 'images/map_icons/'|add:poi.marker.icon.filename %}">
                 {% if poi.highlight %}<img src="{% static 'images/map_icons/mickey_thumb.png' %}" title="A Claire and Adam favorite&#8482;">{% endif %}

@@ -7,5 +7,6 @@ class ImageInline(admin.TabularInline):
     
 class PointOfInterestAdmin(admin.ModelAdmin):
     inlines = [ImageInline]
+    readonly_fields = ('slug', )
     
 admin.site.register(PointOfInterest, PointOfInterestAdmin)
