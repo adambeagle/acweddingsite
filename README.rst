@@ -42,8 +42,9 @@ Django Project Directory (/acwedding)
 
 :/googlemaps: Django app that facilitates embedding Google maps (via Google Maps JavaScript API v3) into pages. Maps can be simple maps with a few markers or more elaborate with animated markers and info windows for each marker.
 
-:/templates: Templates from all apps are in this directory. The directory structure and naming patterns are modeled after those found in "Two Scoops of Django" 12.2.1.
+:/tourisminfo: Django app that includes an index and detail pages for attractions, dining, and lodging options.
 
+:/templates: Templates from all apps are in this directory. The directory structure and naming patterns are modeled after those found in "Two Scoops of Django" 12.2.1.
 
 Legal
 -----
