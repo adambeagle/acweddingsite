@@ -33,7 +33,7 @@
     
     <section>
         <h3>External Links</h3>
-        <a class="block" href="{{ poi.link }}">{{ poi.link_description }}</a>
+        <a href="{{ poi.link }}">{{ poi.link_description }}</a><br>
     </section>
 
     <section>
@@ -42,9 +42,9 @@
         <div class="gmap-wrapper center">
             <div id="map_canvas"></div>
             <span class="block">Note: The ceremony and reception sites are indicated with pink markers.</span>
-            <span class="block"><a href="https://www.google.com/maps/place/{{ poi.marker.lat|linkablelatitude }}+{{ poi.marker.long|linkablelongitude }}">View at Google Maps</a></span>
+            <span class="block"><a href="https://www.google.com/maps/place/{{ poi.marker.lat|linkablelatitude }}+{{ poi.marker.long|linkablelongitude }}/@{{ poi.marker.lat }},{{ poi.marker.long }},15z">View at Google Maps</a></span>
         </div>
-        <p class="only-smallscreen"><em><a href="https://www.google.com/maps/place/{{ poi.marker.lat|linkablelatitude }}+{{ poi.marker.long|linkablelongitude }}">View location at Google Maps.</a></em><br>Embedded map available on larger devices.</p>
+        <p class="only-smallscreen"><em><a href="https://www.google.com/maps/place/{{ poi.marker.lat|linkablelatitude }}+{{ poi.marker.long|linkablelongitude }}/@{{ poi.marker.lat }},{{ poi.marker.long }},15z">View location at Google Maps.</a></em><br>Embedded map available on larger devices.</p>
     </section>
 
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxCuyULS1j9utodXGtNfFQs1fpe0nwoXM&sensor=false"></script>
