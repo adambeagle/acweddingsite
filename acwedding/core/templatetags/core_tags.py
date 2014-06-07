@@ -1,4 +1,5 @@
 import re
+from os.path import splitext as pathsplitext
 
 from django import template
 from django.core.urlresolvers import reverse
@@ -136,3 +137,10 @@ def rsttotable(value):
 
     return ''.join(split)
     
+@register.filter(is_safe=True)
+@stringfilter
+def splitext(value):
+    """
+    Return a filename sans extension. Alias to os.splitext. 
+    """
+    return pathsplitext(value)[0]

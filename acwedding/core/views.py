@@ -24,7 +24,7 @@ class PageDetailView(DetailView):
         context['subheader_image'] = SubheaderImage.objects.get(
             page_id=self.object.pk)
         context['section_list'] = self.object.section_set.select_related(
-            'map', 'minigallery')
+            'map', 'minigallery', 'sectionaudio_set', )
         context['has_map'] = has_map(context['section_list'])
         
         return context

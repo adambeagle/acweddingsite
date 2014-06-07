@@ -65,3 +65,26 @@ class MiniGallery(models.Model):
         
     class Meta:
         verbose_name_plural = 'Mini Galleries'
+        
+class SectionAudio(models.Model):
+    section = models.ForeignKey(Section)
+    full_path = models.FilePathField(path=settings.BASE_DIR.child(
+        'static', 'audio'),
+        max_length=256)
+    filename = models.CharField(max_length=64)
+    description = models.TextField()
+    
+    def __str__(self):
+        return self.filename
+        
+    def save(self, *args, **kwargs):
+        """
+        Automatically generate filename from full_name.
+        """
+        self.filename = basename(self.full_path)
+        super().save(*args, **kwargs)
+        
+    class Meta:
+        verbose_name_plural = 'Section audio'
+        ordering = ('filename', )
+        

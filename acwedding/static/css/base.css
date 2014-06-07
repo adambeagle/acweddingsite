@@ -28,7 +28,7 @@ h2 {
 	color: #666;
 	font-size: 1.5em;
 	padding-bottom: .8em;
-	font-family: pandf;
+	font-family: pandf, sans-serif;
 	/*text-shadow: 2px 2px 2px #BBB;*/
 }
 
@@ -216,6 +216,21 @@ nav>div {
 	max-height: 25em;
 	margin: .3em 0;
 	border-radius: 1.3em;
+	
+	-webkit-transition: all 0,2s ease;
+	-moz-transition: all 0,2s ease;
+	-o-transition: all 0,2s ease;
+	-ms-transition: all 0,2s ease;
+	transition: all 0,2s ease;
+}
+
+#primary>img:hover {
+	/* Nothing but webkit actually works */
+	-webkit-filter: grayscale(80%);
+	-moz-filter: grayscale(80%);
+	-o-filter: grayscale(80%);
+	-ms-filter: grayscale(80%);
+	filter: grayscale(80%);
 }
 
 #primary-text {
@@ -277,9 +292,9 @@ div.point-of-interest-listing img {
 	float: right;
 }
 
-/*div.point-of-interest-highlight {
-	background-color: #EEEEDE !important;
-}*/
+audio {
+	margin-bottom: 1em;
+}
 
 
 /*==============

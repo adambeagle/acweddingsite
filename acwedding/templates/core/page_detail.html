@@ -25,6 +25,16 @@
             
             {{ section.content|removetags:'script'|safe|urlize|reverseurls|rsttotable|bullets|safe|linebreaks }}
             
+            {% for audio in section.sectionaudio_set.all %}
+                <span class="block padding-lite"><em>{{ audio.description }}</em></span>
+                <audio controls>
+                    {% comment %}IMPORTANT: It is assumed each audio has .mp3 and .ogg versions with equivalent base filenames.{% endcomment %}
+                    <source src="{% static 'audio/'|add:audio.filename|splitext %}.mp3" type="audio/mpeg">
+                    <source src="{% static 'audio/'|add:audio.filename|splitext %}.ogg" type="audio/ogg">
+                    <embed height="50" width="100" src="{% static 'audio/'|add:audio.filename|splitext %}.mp3">
+                </audio>
+            {% endfor %}
+            
             {% if section.minigallery %}
                 <div class="minigallery">
                     <ul>
