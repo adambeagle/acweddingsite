@@ -1,0 +1,4 @@
+python manage.py loaddata fixtures/googlemaps.json
+python manage.py loaddata fixtures/tourisminfo.json
+python manage.py loaddata fixtures/faq.json
+python manage.py loaddata fixtures/core.json
