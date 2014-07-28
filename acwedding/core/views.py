@@ -20,6 +20,10 @@ class ContactView(FormView):
     template_name = 'core/contact.html'
     success_url = reverse_lazy('core:contact_thanks')
     form_class = ContactForm
+    
+    def form_valid(self, form, *args, **kwargs):
+        form.send_email()
+        return super().form_valid(form, *args, **kwargs)
 
 class PageDetailView(DetailView):
     queryset = Page.objects.all()

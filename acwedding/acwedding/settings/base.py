@@ -14,6 +14,13 @@ TEMPLATE_DIRS = (
 
 SECRET_KEY = environ["SECRET_KEY"]
 
+# Email settings
+EMAIL_HOST_USER = environ['EMAIL_HOST_USER']
+EMAIL_HOST_PASSWORD = environ['EMAIL_HOST_PASSWORD']
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
 TIME_ZONE = 'America/Detroit'
 LANGUAGE_CODE = 'en-us'
 
