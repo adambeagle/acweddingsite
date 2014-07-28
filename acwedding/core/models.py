@@ -5,7 +5,6 @@ from django.conf import settings
 
 from googlemaps.models import SimpleMap
 
-
 class Page(models.Model):
     name = models.CharField(max_length=25, primary_key=True)
     title = models.CharField(max_length=50)
@@ -79,7 +78,7 @@ class SectionAudio(models.Model):
         
     def save(self, *args, **kwargs):
         """
-        Automatically generate filename from full_name.
+        Automatically generate filename from full_path.
         """
         self.filename = basename(self.full_path)
         super().save(*args, **kwargs)
