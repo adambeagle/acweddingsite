@@ -360,6 +360,28 @@ img.minigallery {
 	
 }
 
+form label {
+	display: block;
+}
+
+.errorlist {
+	color: red;
+}
+
+.errorlist li {
+	list-style-type: none !important;
+	font-style: italic;
+}
+
+.form-error {
+	font-weight: bold;
+	color: red;
+	margin-top: -.3em;
+}
+
+.form-required {
+}
+
 /*==============
 ==== CLASSES ====
 ===============*/

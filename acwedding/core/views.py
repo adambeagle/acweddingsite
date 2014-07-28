@@ -1,5 +1,8 @@
+from django.core.urlresolvers import reverse_lazy
 from django.views.generic import DetailView
+from django.views.generic.edit import FormView
 
+from .forms import ContactForm
 from .models import Page, SubheaderImage
 
 def has_map(sections):
@@ -12,6 +15,11 @@ def has_map(sections):
             return True
             
     return False
+    
+class ContactView(FormView):
+    template_name = 'core/contact.html'
+    success_url = reverse_lazy('core:contact_thanks')
+    form_class = ContactForm
 
 class PageDetailView(DetailView):
     queryset = Page.objects.all()

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block page_title %}{% block h2 %}Contact Us{% endblock h2 %}{% endblock page_title%}
+
+{% block content %}
+    <img src="{% static 'images/subheaders/stan.png' '%}" alt="Stan">
+    <span class="img_subtitle block">Watch 'Dog With a Blog' Fridays on Disney Channel</span>
+    
+    <div id="primary-text">
+        <section id="contact-form">
+            <h3>Write Us!</h3>
+            <form action="{% url 'core:contact' %}#contact-form" method="post">{% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" value="Submit" />
+            </form>
+        </section>
+        <section>
+            <h3>Email</h3>
+            <p>If you'd prefer to email us, we can be reached at <a href="mailto:beaglemadillwedding@gmail.com">beaglemadillwedding@gmail.com</a>.</p>
+        </section>
+    </div>
+{% endblock content %}
