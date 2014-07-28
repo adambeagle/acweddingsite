@@ -11,7 +11,7 @@ def has_map(sections):
     False otherwise.
     """
     for s in sections:
-        if s.map:
+        if s.map is not None:
             return True
             
     return False
