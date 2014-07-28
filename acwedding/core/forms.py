@@ -17,7 +17,8 @@ class ContactForm(forms.Form):
     
     def send_email(self):
         """
-        Sends email to user based on environment variables. 
+        Sends email to owner based on form data.
+        Uses django.core.mail's send_email, which uses EMAIL_HOST_* (etc.) settings.
         Expects self.cleaned_data to be populated, so must be called after is_valid().
         """
         cleaned = self.cleaned_data
