@@ -364,24 +364,6 @@ form label {
 	display: block;
 }
 
-.errorlist {
-	color: red;
-}
-
-.errorlist li {
-	list-style-type: none !important;
-	font-style: italic;
-}
-
-.form-error {
-	font-weight: bold;
-	color: red;
-	margin-top: -.3em;
-}
-
-.form-required {
-}
-
 /*==============
 ==== CLASSES ====
 ===============*/
@@ -405,6 +387,12 @@ form label {
 	right: 0;
 }
 
+.errorlist li {
+	list-style-type: none !important;
+	font-style: italic;
+	color: red;
+}
+
 .faqa {
 	padding: 0 1em;
 }
@@ -413,6 +401,12 @@ form label {
 	color: #333;
 	font-weight: bold;
 	font-size: 1.3em;
+}
+
+.form-error {
+	font-weight: bold;
+	color: red;
+	margin-top: -.3em;
 }
 
 .img_subtitle {
