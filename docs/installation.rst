@@ -30,7 +30,7 @@ Instructions
 
 1. From the root directory of the repository, ``pip install -r requirements.txt`` will install all necessary dependencies (Django, etc.).
 
-2. The Django settings as given expect environment variables named  ``SECRET_KEY``, ``DB_USERNAME``, and ``DB_PASSWORD``. Either set these environment variables locally or hardcode values into the settings (located in ``acwedding/acwedding/settings/``). Consider using ``virtualenvwrapper``'s ``postactivate`` and ``predeactivate`` scripts to set/unset the environment variables automatically.
+2. The Django settings as given expect environment variables named  ``SECRET_KEY``, ``DB_USERNAME``, ``DB_PASSWORD``, ``EMAIL_HOST_USER``, and ``EMAIL_HOST_PASSWORD``. Either set these environment variables locally or hardcode values into the settings (located in ``acwedding/acwedding/settings/``). Consider using ``virtualenvwrapper``'s ``postactivate`` and ``predeactivate`` scripts to set/unset the environment variables automatically. Additionally, ``CONTACT_EMAIL`` and ``DOMAIN`` environment variables are expected by core.forms.ContactForm.
 
 3. Configure the ``DATABASES`` setting in ``local.py`` in the settings directory. Note the project has only been tested with PostgreSQL.
 
