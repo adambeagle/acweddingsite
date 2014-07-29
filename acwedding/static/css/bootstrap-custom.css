@@ -1,0 +1,78 @@
+@font-face{
+	font-family: waltograph;
+	src: url('../fonts/WALTOGRAPH42.otf');
+}
+
+@font-face{
+	font-family: pandf;
+	src: url('../fonts/pandf.ttf');
+}
+
+h1 {
+	color: #EECE79 !important;
+	font-family: waltograph;
+	text-shadow: 3px 3px 3px #222;
+}
+
+footer {
+	background-color: #DDD;
+}
+
+body>div.container {
+	background-color: white;
+	padding-top: 3em;
+}
+
+div.form-group input {
+	display: block;
+	width: 100%;
+	height: 34px;
+	padding: 6px 12px;
+	font-size: 14px;
+	line-height: 1.42857143;
+	color: #555;
+	background-color: #fff;
+	background-image: none;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+		  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	-webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+	   -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+		transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+.center {
+	text-align: center;
+}
+
+.jumbotron {
+	background-color: #8CB766;
+	background-image: url('../images/ui/scotus_banner.png');
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.img-responsive {
+	max-height: 25em;
+}
+
+.navbar {
+	margin-bottom: 0;
+	background-color: #4D1A65;
+	color: white;
+	border-color: #333;
+}
+
+.navbar-default .navbar-nav > li > a {
+	color: #EEE;
+}
+
+.navbar-default .navbar-nav > li > a:hover {
+	color: #EECE79;
+}
+
+.navbar-default .navbar-brand {
+	color: #8CB766;
+	font-family: pandf;
+}
+

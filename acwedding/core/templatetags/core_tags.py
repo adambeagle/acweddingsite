@@ -124,7 +124,7 @@ def rsttotable(value):
         m = re.match(field_list_pattern, line, re.M)
         
         if m:
-            split[i] = '' if inTable else '<table>'
+            split[i] = '' if inTable else '<table class="table">'
             split[i] += _replace_field_list_block(m)
             inTable = True
             

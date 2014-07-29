@@ -13,10 +13,13 @@
 {% endblock extra_css %}
 
 {% block content %}
-    <img src="{% static 'images/subheaders/'|add:subheader_image.filename %}" alt="{{ subheader_image.alt_text }}">
-    {% if subheader_image.subtitle %}
-        <span class="img_subtitle block">{{ subheader_image.subtitle }}</span>
-    {% endif %}
+    <div class="center">
+        <img class="img-responsive" src="{% static 'images/subheaders/'|add:subheader_image.filename %}" alt="{{ subheader_image.alt_text }}">
+        {% if subheader_image.subtitle %}
+            <span class="img_subtitle block">{{ subheader_image.subtitle }}</span>
+        {% endif %}
+    </div>
+    
 
     <div id="primary-text">
     {% for section in section_list %}

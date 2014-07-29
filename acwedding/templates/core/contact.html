@@ -10,8 +10,22 @@
     <div id="primary-text">
         <section id="contact-form">
             <h3>Write Us!</h3>
-            <form action="{% url 'core:contact' %}#contact-form" method="post">{% csrf_token %}
-                {{ form.as_p }}
+            <form action="{% url 'core:contact' %}#contact-form" method="post" role="form">{% csrf_token %}
+                {% for field in form %}
+                    {% if "checkbox" in field|escape %}
+                        <div class="checkbox">
+                            {{ field.errors }}
+                            <label for="{{ field.id_for_label }}">
+                                {{ field }} {{ field.label }}
+                            </label>
+                        </div>
+                    {% else %}
+                        <div class="form-group">
+                            {{field.errors }}
+                            {{ field.label_tag }} {{ field }}
+                        </div>
+                    {% endif %}
+                {% endfor %}
                 <input type="submit" value="Submit" />
             </form>
         </section>
