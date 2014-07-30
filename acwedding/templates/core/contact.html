@@ -4,8 +4,10 @@
 {% block page_title %}{% block h2 %}Contact Us{% endblock h2 %}{% endblock page_title%}
 
 {% block content %}
-    <img src="{% static 'images/subheaders/stan.png' '%}" alt="Stan">
-    <span class="img_subtitle block">Watch 'Dog With a Blog' Fridays on Disney Channel</span>
+    <div class="well well-subheader-img">
+        <img class="img-responsive center-block" src="{% static 'images/subheaders/stan.png' %}" alt="Stan">
+        <p class="text-center">Watch 'Dog With a Blog' Fridays on Disney Channel</p>
+    </div>
     
     <div id="primary-text">
         <section id="contact-form">

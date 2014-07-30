@@ -8,10 +8,28 @@
 	src: url('../fonts/pandf.ttf');
 }
 
+body {
+	background-color: #EFEFEF;
+	background-image: url('../images/ui/body_bg.png');
+}
+
+a:hover {
+	text-decoration: none;
+}
+
 h1 {
-	color: #EECE79 !important;
+	color: #EEE !important;
 	font-family: waltograph;
 	text-shadow: 3px 3px 3px #222;
+}
+
+h2 {
+	font-family: pandf;
+	margin-bottom: 20px;
+}
+
+section {
+	margin-bottom: 30px;
 }
 
 footer {
@@ -20,7 +38,8 @@ footer {
 
 body>div.container {
 	background-color: white;
-	padding-top: 3em;
+	padding-top: 2.5em;
+	padding-bottom: 2.5em;
 }
 
 div.form-group input {
@@ -41,15 +60,26 @@ div.form-group input {
 	   -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 		transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 }
-.center {
-	text-align: center;
+
+header .subheading {
+	color: white;
+}
+
+header a {
+	color: inherit;
+}
+
+header a:hover {
+	color: inherit;
 }
 
 .jumbotron {
 	background-color: #8CB766;
-	background-image: url('../images/ui/scotus_banner.png');
+	background-image: url('../images/ui/poster_banner.png');
 	background-repeat: no-repeat;
 	background-size: cover;
+	margin-bottom: 0;
+	padding: 10px;
 }
 
 .img-responsive {
@@ -60,7 +90,7 @@ div.form-group input {
 	margin-bottom: 0;
 	background-color: #4D1A65;
 	color: white;
-	border-color: #333;
+	border: 0;
 }
 
 .navbar-default .navbar-nav > li > a {
@@ -68,7 +98,7 @@ div.form-group input {
 }
 
 .navbar-default .navbar-nav > li > a:hover {
-	color: #EECE79;
+	color: #8CB766;
 }
 
 .navbar-default .navbar-brand {
@@ -76,3 +106,74 @@ div.form-group input {
 	font-family: pandf;
 }
 
+.navbar {
+	background: rgba(77,26,101,1);
+	background: -moz-linear-gradient(top, rgba(77,26,101,1) 0%, rgba(56,19,74,1) 100%);
+	background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(77,26,101,1)), color-stop(100%, rgba(56,19,74,1)));
+	background: -webkit-linear-gradient(top, rgba(77,26,101,1) 0%, rgba(56,19,74,1) 100%);
+	background: -o-linear-gradient(top, rgba(77,26,101,1) 0%, rgba(56,19,74,1) 100%);
+	background: -ms-linear-gradient(top, rgba(77,26,101,1) 0%, rgba(56,19,74,1) 100%);
+	background: linear-gradient(to bottom, rgba(77,26,101,1) 0%, rgba(56,19,74,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4d1a65', endColorstr='#38134a', GradientType=0 );
+}
+
+.navbar-default .navbar-nav > .open > a {
+	background-color: #3D1551;
+}
+
+/* Top-level column */
+body > .container > .row > div {
+	border: 1px solid #EEE;
+	border-radius: 5px;
+}
+
+.dropdown-menu {
+	background-color: #3D1551;
+}
+
+.dropdown-menu > li > a {
+	color: #DDD;
+}
+
+.dropdown-menu > li > a:hover {
+	background-color: #3D1551;
+	color: #CCC;
+}
+
+.list-group-item {
+}
+
+.list-group-item-highlight {
+	background-color: #fcf8e3;
+}
+
+.list-group-item-highlight:hover {
+	background-color: #FAF2CC !important;
+}
+
+.breadcrumb {
+	margin-bottom: 0;
+}
+.well-subheader-img {
+	max-width: 70%;
+	margin: auto;
+}
+
+.well-subheader-img img {
+	margin-bottom: 20px;
+}
+
+.well-subheader-img p {
+	margin-bottom: 0;
+	font-style: italic;
+}
+
+body > .container > .row > div {
+	padding-bottom: 1em;
+}
+
+.topleft {
+	position: absolute;
+	top: 0;
+	left: 0;
+}
