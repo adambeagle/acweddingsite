@@ -13,7 +13,12 @@ class ContactForm(forms.Form):
     name = forms.CharField(max_length=64, label='Your name')
     email_address = forms.EmailField(label='Your email address')
     cc_sender = forms.BooleanField(required=False, label='Send copy of message to email address above')
-    message = forms.CharField(widget=forms.Textarea)
+    message = forms.CharField(widget=forms.Textarea(
+        attrs={
+            'rows' : '10',
+            'class' : 'form-control',
+        })
+    )
     
     error_css_class = 'form-error'
     

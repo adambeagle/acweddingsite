@@ -1,17 +1,36 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
+{% load core_tags %}
 
 {% block page_title %}{% block h2 %}Contact Us{% endblock h2 %}{% endblock page_title%}
 
 {% block content %}
-    <img src="{% static 'images/subheaders/stan.png' '%}" alt="Stan">
-    <span class="img_subtitle block">Watch 'Dog With a Blog' Fridays on Disney Channel</span>
+    <div class="subheader-img-wrapper">
+        <img class="img-responsive center-block" src="{% static 'images/subheaders/stan.png' %}" alt="Stan">
+        <p class="text-center">Watch 'Dog With a Blog' Fridays on Disney Channel</p>
+    </div>
     
     <div id="primary-text">
-        <section id="contact-form">
+        <section >
             <h3>Write Us!</h3>
-            <form action="{% url 'core:contact' %}#contact-form" method="post">{% csrf_token %}
-                {{ form.as_p }}
+            <p>Use the form below to contact Claire and Adam. Feel free to ask questions about the wedding, report a problem with this site, or just say hi! Be sure to provide your correct email address so we can get back to you.</p>
+            <form id="contact-form" action="{% url 'core:contact' %}#contact-form" method="post" role="form">{% csrf_token %}
+                {% for field in form %}
+                    {% if "checkbox" in field|escape %}
+                        <div class="checkbox">
+                            {{ field.errors }}
+                            <label for="{{ field.id_for_label }}">
+                                {{ field }} {{ field.label }}
+                            </label>
+                        </div>
+                    {% else %}
+                        <div class="form-group {% if field.errors %}has-error{% endif %}">
+                            {{ field.errors }}
+                            {{ field.label_tag }} 
+                            {{ field|addwidgetcss:"form-control" }}
+                        </div>
+                    {% endif %}
+                {% endfor %}
                 <input type="submit" value="Submit" />
             </form>
         </section>

@@ -8,24 +8,34 @@
 {% endblock extra_js %}
 
 {% block content %}
-    <p>Click a checkbox to filter list. Click anywhere in a list item to view more information.</p>
+    <p class="text-center">Need some lunch before the ceremony? Are you planning to stay for the weekend but unsure of where to find dinosaurs in a forest? This page is your guide to doing Alpena <em>the Claire and Adam way&#8482;</em>.</p>
+    <p class="text-center">Click a checkbox to filter list. Click anywhere in a list item to view more information.</p>
     
-    <div class="center padding-lite">
-        <input type="checkbox" name="attractions" checked="true">Things to do
-        <input type="checkbox" name="food" checked="true">Food &amp; Drink
-        <input type="checkbox" name="lighthouses" checked="true">Lighthouses
+    <div class="text-center">
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" name="attractions" checked="true">Things to do
+            </label>
+        </div>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" name="food" checked="true">Food &amp; Drink
+            </label>
+        </div>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" name="lighthouses" checked="true">Lighthouses
+            </label>
+        </div>
     </div>
     
-    <div id="point-of-interest-list">
+    <div class="list-group">
     {% for poi in poi_list %}
-        <a href="{% url 'tourisminfo:detail' poi.slug %}" alt="More information">
-            <div class="point-of-interest-listing {{ poi.category }}{% if poi.highlight %} point-of-interest-highlight{% endif %}">
-                <img src="{% static 'images/map_icons/'|add:poi.marker.icon.filename %}">
-                {% if poi.highlight %}<img src="{% static 'images/map_icons/mickey_thumb.png' %}" title="A Claire and Adam favorite&#8482;">{% endif %}
-                <h4>{{ poi.full_name }}</h4>
-                <p>{{ poi.short_description }}</p>
-                <br>
-            </div>
+        <a href="{% url 'tourisminfo:detail' poi.slug %}" alt="More information" class="list-group-item {% if poi.highlight %}list-group-item-highlight {% endif %}{{ poi.category }}">
+                <img src="{% static 'images/map_icons/'|add:poi.marker.icon.filename %}" class="pull-right">
+                {% if poi.highlight %}<img src="{% static 'images/map_icons/mickey_thumb.png' %}" title="A Claire and Adam favorite&#8482;" class="pull-right">{% endif %}
+                <h4 class="list-group-item-heading">{{ poi.full_name }}</h4>
+                <p class="list-group-item-text">{{ poi.short_description }}</p>
         </a>
     {% empty %}
         <p>No attraction or food information at this time.</p>
@@ -38,12 +48,7 @@
 <script type="text/javascript">
     $(document).ready(function() {
         $(':checkbox').change(function() {
-            if(this.checked) {
-                $('.'+this.name).show();
-            }
-            else {
-                $('.'+this.name).hide();
-            }
+            $('.'+this.name).slideToggle(300);
         });
     });
 </script>

@@ -1,0 +1,9 @@
+THISDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+BSDIR=~/dev/bootstrap-3.2.0/
+FILE1="dist/css/bootstrap.css"
+FILE2="dist/css/bootstrap.css.map"
+
+cd $BSDIR
+grunt dist
+cd $THISDIR
+cp -v -t static/css/ $BSDIR$FILE1 $BSDIR$FILE2
