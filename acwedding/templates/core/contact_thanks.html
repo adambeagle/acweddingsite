@@ -3,6 +3,16 @@
 {% block page_title %}Message Sent{% endblock page_title%}
 {% block h2 %}Thanks!{% endblock h2 %}
 
+{% block breadcrumb %}
+    <ol class="breadcrumb">
+        <li><a href="/">Home</a></li>
+        <li><a href="{% url 'core:contact' %}">Contact</a></li>
+        <li class="active">Message Sent</li>
+    </ol>
+{% endblock breadcrumb %}
+
+{% block content-col-extraclass  %}no-border{% endblock %}
+
 {% block content %}
-    <p>Your message has been sent to Claire and Adam. You should hear back from us shortly.</p>
+    <p class="text-center">Your message has been sent to Claire and Adam. You should hear back from us shortly.</p>
 {% endblock content %}
