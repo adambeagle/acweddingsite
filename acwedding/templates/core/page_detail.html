@@ -13,12 +13,14 @@
 {% endblock extra_css %}
 
 {% block content %}
-    <div class="well well-subheader-img">
-        <img class="img-responsive center-block" src="{% static 'images/subheaders/'|add:subheader_image.filename %}" alt="{{ subheader_image.alt_text }}">
-        {% if subheader_image.subtitle %}
-            <p class="text-center">{{ subheader_image.subtitle|safe}}</p>
-        {% endif %}
-    </div>
+    {% if subheader_image %}
+        <div class="subheader-img-wrapper">
+            <img class="img-responsive center-block" src="{% static 'images/subheaders/'|add:subheader_image.filename %}" alt="{{ subheader_image.alt_text }}">
+            {% if subheader_image.subtitle %}
+                <p class="text-center">{{ subheader_image.subtitle|safe}}</p>
+            {% endif %}
+        </div>
+    {% endif %}
     
     {% for section in section_list %}
         <section>
@@ -43,7 +45,7 @@
             {% if section.minigallery %}
                 <div class="row">
                     {% for image in section.minigallery.images.all %}
-                        <div class="col-md-2 col-sm-2 col-xs-3">
+                        <div class="col-md-2 col-sm-2 col-xs-4">
                             <a href="#img{{ image.id }}" class="thumbnail">
                                 <img src="{% static 'images/tn/'|add:image.filename|add:'.thumbnail' %}" alt="{{ image.caption }}" title="{{ image.caption }}">
                             </a>

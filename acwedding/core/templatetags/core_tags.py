@@ -8,7 +8,7 @@ from django.template.defaultfilters import stringfilter
 register = template.Library()
 
 ul_pattern = r"^[*][ \t](\S[^\r\n]*)[\r]?$"
-url_block_pattern = r"\[(.+?|\\\])\]\((\w+(?:\:\w+)?(?: \w+)*)\)"
+url_block_pattern = r"\[(.+?|\\\])\]\((\w+(?:\:\w+)?(?: [\w-]+)*)\)"
 field_list_pattern = (
     r"^(?:<p>)?:((?:[^\n\r\f\v:]|\\:)+):[\t ]*(\S[^\n\r\v\f]+)" +
     r"(?:</p>|<br />)?\r?$")
@@ -45,6 +45,12 @@ def linebreakshtmlaware(self):
     """ """
     return
     
+# Courtesy of 
+# vanderwijk.info/blog/adding-css-classes-formfields-in-django-templates/
+@register.filter(name='addwidgetcss')
+def addwidgetcss(field, css):
+   return field.as_widget(attrs={"class" : css})
+
 @register.filter(is_safe=True)
 @stringfilter
 def bullets(value):
@@ -118,7 +124,6 @@ def rsttotable(value):
     """
     split = value.splitlines(keepends=1)
     inTable = False
-    
     
     for i, line in enumerate(split):
         m = re.match(field_list_pattern, line, re.M)

@@ -6,9 +6,9 @@
 {% block page_title %}{{ poi.full_name }}{% endblock page_title %}
 
 {% block h2 %}
-    <img src="{% static 'images/map_icons/'|add:poi.marker.icon.filename %}">
+    <img src="{% static 'images/map_icons/'|add:poi.marker.icon.filename %}" class="hidden-xs">
     &nbsp;&nbsp;{{ poi.full_name }}&nbsp;&nbsp;
-    <img src="{% static 'images/map_icons/'|add:poi.marker.icon.filename %}">
+    <img src="{% static 'images/map_icons/'|add:poi.marker.icon.filename %}"  class="hidden-xs">
 {% endblock %}
 
 {% block extra_css %}<link rel="stylesheet" type="text/css" href="{% static 'css/gmap.css' %}" />{% endblock %}
@@ -24,7 +24,7 @@
 {% block content %}
 
     {% if poi.image %}
-        <div class="well well-subheader-img">
+        <div class="subheader-img-wrapper">
                 <img src="{% static 'images/tourisminfo/'|add:poi.image.filename %}" class="img-responsive center-block">
                 {% if poi.image.subtitle %}
                     <p class="text-center">{{ poi.image.subtitle }}</p>
@@ -55,10 +55,12 @@
 
             <div class="gmap-wrapper hidden-xs text-center">
                 <div id="map_canvas"></div>
-                <p>Note: The ceremony and reception sites are indicated with pink markers.</p>
-                <p><a href="https://www.google.com/maps/place/{{ poi.marker.lat|linkablelatitude }}+{{ poi.marker.long|linkablelongitude }}/@{{ poi.marker.lat }},{{ poi.marker.long }},15z">View at Google Maps</a></p>
+                <p>
+                    Note: The ceremony and reception sites are indicated with pink markers.<br>
+                    <a href="https://www.google.com/maps/place/{{ poi.marker.lat|linkablelatitude }}+{{ poi.marker.long|linkablelongitude }}/@{{ poi.marker.lat }},{{ poi.marker.long }},15z">View at Google Maps</a>
+                </p>
             </div>
-            <p class="visible-xs"><em><a href="https://www.google.com/maps/place/{{ poi.marker.lat|linkablelatitude }}+{{ poi.marker.long|linkablelongitude }}/@{{ poi.marker.lat }},{{ poi.marker.long }},15z">View location at Google Maps.</a></em><br>Embedded map available on larger devices.</p>
+            <p class="visible-xs"><strong><a href="https://www.google.com/maps/place/{{ poi.marker.lat|linkablelatitude }}+{{ poi.marker.long|linkablelongitude }}/@{{ poi.marker.lat }},{{ poi.marker.long }},15z">View location at Google Maps.</a></strong><br>Embedded map available on larger devices.</p>
         </section>
 
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxCuyULS1j9utodXGtNfFQs1fpe0nwoXM&sensor=false"></script>

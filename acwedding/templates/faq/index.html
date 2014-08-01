@@ -3,16 +3,21 @@
 
 {% block page_title %}{% block h2 %}FAQ{% endblock h2 %}{% endblock page_title %}
 
-{% block content %}
+{% block content-col-extraclass  %}faq{% endblock %}
 
-    {% for entry in entry_list %}
-    <div class="list-group">
-        <h3 class="list-group-item-heading">{{ entry.question }}</h3>
-        <p class="list-group-item-text">{{ entry.answer|reverseurls|safe}}</p>
+{% block content %}
+    <div class="faq">
+        {% for entry in entry_list %}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><strong>{{ entry.question }}</strong></h3>
+            </div>
+            <div class="panel-body">{{ entry.answer|reverseurls|safe}}</div>
+        </div>
+        {% empty %}
+        <p>No FAQ entries at this time.</p>
+        {% endfor %}
     </div>
-    {% empty %}
-    <p>No FAQ entries at this time.</p>
-    {% endfor %}
 
 {% endblock content %}
 
