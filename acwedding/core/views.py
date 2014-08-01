@@ -33,8 +33,11 @@ class PageDetailView(DetailView):
         
         # MiniGalleryImages are not prefetched to avoid hitting the DB for 
         # them at all if a page does not include any minigalleries.
-        context['subheader_image'] = SubheaderImage.objects.get(
-            page_id=self.object.pk)
+        try:
+            context['subheader_image'] = SubheaderImage.objects.filter(
+                page_id=self.object.pk)[0]
+        except IndexError:
+            context['subheader_image'] = None
         context['section_list'] = self.object.section_set.select_related(
             'map', 'minigallery', 'sectionaudio_set', )
         context['has_map'] = has_map(context['section_list'])
