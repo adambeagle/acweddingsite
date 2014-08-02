@@ -20,7 +20,7 @@
         <div class="subheader-img-wrapper">
             <img class="img-responsive center-block" src="{% static 'images/subheaders/'|add:subheader_image.filename %}" alt="{{ subheader_image.alt_text }}">
             {% if subheader_image.subtitle %}
-                <p class="text-center">{{ subheader_image.subtitle|safe}}</p>
+                <p>{{ subheader_image.subtitle|safe}}</p>
             {% endif %}
         </div>
     {% endif %}
