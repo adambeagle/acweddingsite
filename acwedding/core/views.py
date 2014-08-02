@@ -54,11 +54,3 @@ class PageDetailView(DetailView):
         context['has_minigallery'] = has_minigallery
         
         return context
-
-class WelcomeView(PageDetailView):
-    template_name = 'core/welcome.html'
-    
-    def get_object(self):
-        queryset = self.get_queryset()
-        
-        return queryset.get(pk='welcome')
