@@ -4,17 +4,6 @@ from django.views.generic.edit import FormView
 
 from .forms import ContactForm
 from .models import Page, SubheaderImage
-
-def has_map(sections):
-    """
-    Return True if any Section has a non-empty and non-null 'map' attribute,
-    False otherwise.
-    """
-    for s in sections:
-        if s.map is not None:
-            return True
-            
-    return False
     
 class ContactView(FormView):
     template_name = 'core/contact.html'
@@ -40,6 +29,36 @@ class PageDetailView(DetailView):
             context['subheader_image'] = None
         context['section_list'] = self.object.section_set.select_related(
             'map', 'minigallery', 'sectionaudio_set', )
-        context['has_map'] = has_map(context['section_list'])
+        context = self._set_section_context(context)
         
         return context
+        
+    def _set_section_context(self, context):
+        """
+        Set the 'has_map' and 'has_minigallery' context variables and return context.
+        """
+        has_map = False
+        has_minigallery = True
+        
+        for s in context['section_list']:
+            if has_map and has_minigallery:
+                break
+                
+            if s.map is not None:
+                has_map = True
+                
+            #if hasattr(s, 'minigallery'):
+               # has_minigallery = True
+                
+        context['has_map'] = has_map
+        context['has_minigallery'] = has_minigallery
+        
+        return context
+
+class WelcomeView(PageDetailView):
+    template_name = 'core/welcome.html'
+    
+    def get_object(self):
+        queryset = self.get_queryset()
+        
+        return queryset.get(pk='welcome')

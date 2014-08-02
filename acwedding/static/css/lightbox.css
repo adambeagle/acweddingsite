@@ -23,7 +23,7 @@ schier.co/post/creating-pure-css-lightboxes-with-the-:target-selector
 }
 
 .lightbox p {
-	margin: 0;
+	margin-top: 10px;
 	color: white;
 }
 
@@ -31,4 +31,3 @@ schier.co/post/creating-pure-css-lightboxes-with-the-:target-selector
 	display: block;
 	outline: none;
 }
-

@@ -143,6 +143,33 @@ h1 {
 	}
 }
 
+
+.swap {
+	position: absolute;
+	top: 0;
+	border-radius: 30px;
+}
+
+.swap-image-wrapper {
+	width: 80%;
+	position: relative;
+}
+
+.swap-image-wrapper img {
+	max-width: 100%;
+	display: block;
+	margin: 0;
+}
+
+.swap-image-wrapper img:first-child {
+	visibility: hidden;
+}
+
+#swapper {
+	opacity: 0%;
+	display: none;
+}
+
 /* 
 ===========
 	 CONTENT
@@ -151,8 +178,8 @@ h1 {
 @media (min-width: 1024px) {
 	#content-col {
 		padding-top: 20px;
-		border: 1px solid #ccc;
-		border-radius: 7px;
+		border-left: 1px solid #ccc;
+		border-right: 1px solid #ccc;
 	}
 }
 
