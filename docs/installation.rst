@@ -38,4 +38,4 @@ Instructions
 
 5. Load fixtures from ``acwedding/fixtures`` using ``python manage.py loaddata <file>``. *(Fixtures are not included in the github repo).*
 
-6. The site should now be available to view at ``localhost:8000`` after ``runserver`` is run. Note the root of the site redirects to /welcome/. If a Page object with the primary key "welcome" does not exist, an exception will be raised.
+6. The site should now be available to view at ``localhost:8000`` after ``runserver`` is run. 
