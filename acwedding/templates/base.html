@@ -103,7 +103,7 @@
     <script src="{% static 'js/bootstrap.js' %}"></script>
     
     <script type='text/javascript'>
-        $(document).ready(function() {
+        $(window).load(function() {
             originalPadding = parseInt($( 'body > .container' ).css('padding-bottom'), 10);
             newPadding = originalPadding + ($( window ).height() - $( 'body' ).height());
             if (newPadding > originalPadding) {
