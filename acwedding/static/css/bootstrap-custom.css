@@ -80,21 +80,27 @@ a:hover {
 h1 {
 	font-family: waltograph;
 	margin-top: 0;
+	text-align: center;
+	text-shadow: 2px 2px #000;
 }
 
 .jumbotron h2 {
 	margin-top: 0;
 	font-family: pandf;
+	text-align: center;
+	font-size: 20px;
+	text-shadow: 2px 2px #000;
 }
 
-@media (max-width: 767px) {
+@media (min-width: 767px) {
 	h1 {
-		text-align: center;
+		text-align: left;
 	}
 	
 	.jumbotron h2 {
-		text-align: center;
-		font-size: 20px;
+		text-align: left;
+		font-size: start;
+		font-size: 32px;
 	}
 }
 
@@ -107,10 +113,6 @@ h1 {
 #content-container h2 {
 	margin-top: 0;
 	color: #666;
-}
-
-.subheader-img-wrapper  {
-	text-align: center;
 }
 
 .subheader-img-wrapper img{

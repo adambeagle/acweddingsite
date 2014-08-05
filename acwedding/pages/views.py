@@ -29,6 +29,7 @@ class ContactView(FormView):
         
 class PageDetailView(DetailView):
     template_name = 'pages/page_detail.html'
+    model = Page
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
