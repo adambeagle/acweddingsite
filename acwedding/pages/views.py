@@ -36,5 +36,6 @@ class PageDetailView(DetailView):
         
         # TODO select_related? needs tests
         context['sections'] = self.object.section_set.all() 
+        context['subheader_image'] = self.object.subheader_image
         
         return context

@@ -6,7 +6,7 @@
 {% block content_header %}
     {% if subheader_image %}
         <div class="subheader-img-wrapper center-block">
-                <img class="img-responsive center-block" src="{% static subheader_image.filename %}" alt="{{ subheader_image.alt_text }}">
+                <img class="img-responsive center-block" src="{% static subheader_image.static_path %}" alt="{{ subheader_image.alt_text }}">
                 {% if subheader_image.caption %}
                     <p class="text-center">{{ subheader_image.caption|safe }}</p>
                 {% endif %}

@@ -19,13 +19,13 @@ class Section(TextContentModel):
         
     def delete(self, *args, **kwargs):
         ret = super().save(*args, **kwargs)
-        Page.objects.get(self.page).update_bools()
+        Page.objects.get(pk=self.page.id).update_bools()
         
         return ret
         
     def save(self, *args, **kwargs):
         ret = super().save(*args, **kwargs)
-        Page.objects.get(self.page).update_bools()
+        self.page.update_bools()
         
         return ret
 
@@ -50,5 +50,9 @@ class Page(SluggedModel):
         self.has_gallery = has_gallery
         self.has_map = has_map
         self.save()
+        
+    @property
+    def title(self):
+        return self.full_name
                 
                 

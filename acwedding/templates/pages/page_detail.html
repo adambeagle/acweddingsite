@@ -1,9 +1,9 @@
 {% extends 'base_content_header_img.html' %}
 {% load staticfiles %}
 {% load core_tags %}
-{% load googlemaps_tags %}
 
-{% block page_title %}{% block h2 %}{{ page.title }}{% endblock h2 %}{% endblock page_title%}
+
+{% block page_title %}{% block h2 %}{{ page.title }}{% endblock h2 %}{% endblock page_title %}
 
 {% block extra_css %}
     {% if page.has_map %}
@@ -21,41 +21,21 @@
             <h3>{{ section.heading }}</h3>
             
             {{ section.content|safe|linebreaks }}
-            
-{% comment %}
-            {% if section.minigallery %}
-                <div class="row popup-gallery">
-                    {% for image in section.minigallery.images.all %}
-                        <div class="col-md-2 col-sm-2 col-xs-4">
-                            <a href="{% static 'images/minigallery/'|add:image.filename %}" class="thumbnail" title="{{ image.caption }}">
-                                <img src="{% static 'images/tn/'|add:image.filename|add:'.thumbnail' %}" alt="{{ image.caption }}" title="{{ image.caption }}">
-                            </a>
-                        </div>
-                    {% endfor %}
-                </div>
-            {% endif %}
-            
-            {% for audio in section.sectionaudio_set.all %}
-                <div>
-                     <p><em>{{ audio.description }}</em></p>
-                    <audio controls>
-                        {% comment %} 
-                            !!!!!!!!!!!!!!!!
-                            IMPORTANT: It is assumed each audio has .mp3 and .ogg versions with equivalent base filenames.
-                            !!!!!!!!!!!!!!!!
-                        {% endcomment %}
-                        <source src="{% static 'audio/'|add:audio.filename|splitext %}.mp3" type="audio/mpeg">
-                        <source src="{% static 'audio/'|add:audio.filename|splitext %}.ogg" type="audio/ogg">
-                        <embed height="50" width="100" src="{% static 'audio/'|add:audio.filename|splitext %}.mp3">
-                    </audio>
-                </div>
-            {% endfor %}
-            
-            {% if section.map %}
-                {% simple_map section.map %}
-            {% endif %}
         
-{% comment %}
+            {% with images=section.gallery_images.all %}
+                {% if images %}
+                    <div class="row popup-gallery">
+                        {% for image in images %}
+                            <div class="col-md-2 col-sm-2 col-xs-4">
+                                <a href="{% static image.static_path %}" class="thumbnail" title="{{ image.caption }}">
+                                    <img src="{% static image.thumbnail_path|add:'.thumbnail' %}" alt="{{ image.caption }}" title="{{ image.caption }}">
+                                </a>
+                            </div>
+                    {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
+        
         </section>
     {% endfor %}
 

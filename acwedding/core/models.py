@@ -1,16 +1,36 @@
+from os.path import basename
 import re
 
 from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes import generic
 from django.db import models
+from django.utils.functional import cached_property
 
-import core.util
+from core import util
     
 # ============================================================================
 # BASE CLASSES
-class BaseAudio(models.Model):
-    filename = models.FilePathField(
+class BaseStaticFile(models.Model):
+    """
+    Designed for use with models that represent or point to a static asset.
+    Provides static_path and filename cached properties.
+    """
+    @cached_property
+    def filename(self):
+        return basename(self.full_path)
+    
+    @cached_property
+    def static_path(self):
+        return re.match(
+            r".*/static/(.+)$", self.full_path
+        ).group(1)
+        
+    class Meta:
+        abstract = True
+
+class BaseAudio(BaseStaticFile):
+    full_path = models.FilePathField(
         path=settings.BASE_DIR.child('static', 'audio'),
         recursive=True,
         max_length=64
@@ -18,20 +38,13 @@ class BaseAudio(models.Model):
     caption = models.CharField(max_length=128)
     
     def __str__(self):
-        return self.filename
+        return self.static_path
     
-    def save(self, *args, **kwargs):
-        self.filename = re.match(
-            r".*/static/(audio/.*)$", self.filename
-        ).group(1)
-        
-        return super().save(*args, **kwargs)
-        
     class Meta:
         abstract = True
 
-class BaseImage(models.Model):
-    filename = models.FilePathField(
+class BaseImage(BaseStaticFile):
+    full_path = models.FilePathField(
         path=settings.BASE_DIR.child('static', 'images'),
         recursive=True,
         max_length=128,
@@ -40,15 +53,16 @@ class BaseImage(models.Model):
     caption  = models.CharField(max_length=256, null=True, blank=True)
     
     def __str__(self):
-        return self.filename
+        return self.static_path
         
-    def save(self, *args, **kwargs):
-        self.filename = re.match(
-            r".*/static/(images/.*)$", self.filename
-        ).group(1)
-        
-        return super().save(*args, **kwargs)
-    
+    @cached_property
+    def thumbnail_path(self):
+        return re.sub(
+            r"^images/[^/]+(.+)$", 
+            r'images/tn\1',
+            self.static_path
+        )
+
     class Meta:
         abstract = True
 

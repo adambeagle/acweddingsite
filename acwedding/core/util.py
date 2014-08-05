@@ -1,4 +1,5 @@
 from datetime import datetime
+import re
 
 field_list_pattern = (
     r"^(?:<p>)?:((?:[^\n\r\f\v:]|\\:)+):[\t ]*(\S[^\n\r\v\f]+)" +
