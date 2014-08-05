@@ -4,6 +4,8 @@ from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes import generic
 from django.db import models
+
+import core.util
     
 # ============================================================================
 # BASE CLASSES
@@ -19,7 +21,10 @@ class BaseAudio(models.Model):
         return self.filename
     
     def save(self, *args, **kwargs):
-        self.filename = re.match(r".*/static/(audio/.*)$", self.filename).group(1)
+        self.filename = re.match(
+            r".*/static/(audio/.*)$", self.filename
+        ).group(1)
+        
         return super().save(*args, **kwargs)
         
     class Meta:
@@ -38,7 +43,10 @@ class BaseImage(models.Model):
         return self.filename
         
     def save(self, *args, **kwargs):
-        self.filename = re.match(r".*/static/(images/.*)$", self.filename).group(1)
+        self.filename = re.match(
+            r".*/static/(images/.*)$", self.filename
+        ).group(1)
+        
         return super().save(*args, **kwargs)
     
     class Meta:
@@ -52,6 +60,22 @@ class SluggedModel(models.Model):
     
     def __str__(self):
         return self.full_name
+    
+    class Meta:
+        abstract = True
+        
+class TextContentModel(models.Model):
+    content = models.TextField()
+    
+    def save(self, *args, **kwargs):
+        """
+        Perform custom processing on content before save (reverse urls, etc)
+        """
+        self.content = util.reverse_urls(
+            util.rst_to_table(util.asterisks_to_ul(self.content))
+        )
+        
+        super().save(*args, **kwargs)
     
     class Meta:
         abstract = True

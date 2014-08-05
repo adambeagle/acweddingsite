@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <title>{% block page_title %}{% endblock %} | Beagle-Madill Wedding</title>
+    <title>{% block full_page_title %}{% block page_title %}{% endblock page_title %} | Beagle-Madill Wedding{% endblock full_page_title %}</title>
 
     <link href='http://fonts.googleapis.com/css?family=News+Cycle' rel='stylesheet' type='text/css'>
     <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
@@ -38,34 +38,36 @@
                     <li class="dopdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">about us<span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="{% url 'core:detail' 'bride-and-groom' %}" title="About the Bride and Groom">Bride &amp; Groom</a></li>
-                            <li><a href="{% url 'core:detail' 'kittens' %}" title="A page about our babies">The Kittens</a></li>
-                            <li><a href="{% url 'core:detail' 'engagement' %}" title="Engagement">Engagement</a></li>
-                            <li><a href="{% url 'core:detail' 'wedding-party' %}" title="Wedding Party">Wedding party</a></li>
+                            <li><a href="{% url 'pages:detail' 'bride-and-groom' %}" title="About the Bride and Groom">Bride &amp; Groom</a></li>
+                            <li><a href="{% url 'pages:detail' 'kittens' %}" title="A page about our babies">The Kittens</a></li>
+                            <li><a href="{% url 'pages:detail' 'engagement' %}" title="Engagement">Engagement</a></li>
+                            <li><a href="{% url 'pages:detail' 'wedding-party' %}" title="Wedding Party">Wedding party</a></li>
                         </ul>
                     </li>
                     <li class="dopdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">guest information<span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="{% url 'core:detail' 'ceremony' %}" title="Ceremony">Ceremony</a></li>
-                            <li><a href="{% url 'core:detail' 'reception' %}" title="Reception">Reception</a></li>
-                            <li><a href="{% url 'core:detail' 'registry' %}" title="Registry">Registry</a></li>
-                            <li><a href="{% url 'core:detail' 'transportation' %}" title="Transportation">Transportation</a></li>
+                            <li><a href="{% url 'pages:detail' 'ceremony' %}" title="Ceremony">Ceremony</a></li>
+                            <li><a href="{% url 'pages:detail' 'reception' %}" title="Reception">Reception</a></li>
+                            <li><a href="{% url 'pages:detail' 'registry' %}" title="Registry">Registry</a></li>
+                            <li><a href="{% url 'pages:detail' 'transportation' %}" title="Transportation">Transportation</a></li>
                         </ul>
                     </li>
+                    {% comment %}
                     <li class="dopdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">area information<span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="" title="Hotel, motel, and cabin options">Accommodations</a></li>
                             <li><a href="{% url 'tourisminfo:attractions_index' %}" title="Attractions and Food">Attractions &amp; Food</a></li>
-                            <li><a href="{% url 'core:detail' 'history' %}" title="History">History</a></li>
+                            <li><a href="{% url 'pages:detail' 'history' %}" title="History">History</a></li>
                         </ul>
                     </li>
+                    {% endcomment %}
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="{% url 'faq:index' %}">FAQ</a></li>
-                    <li><a href="{% url 'core:detail' 'vendors' %}" title="Vendors">Vendors</a></li>
-                    <li><a href="{% url 'core:contact' %}">Contact</a></li>
+                    <li><a href="{% url 'pages:detail' 'vendors' %}" title="Vendors">Vendors</a></li>
+                    <li><a href="{% url 'pages:contact' %}">Contact</a></li>
                 </ul>
             </div>
         </div>
@@ -84,6 +86,8 @@
         <h2 class="text-center">{% block h2 %}{% endblock %}</h2>
         <div class="row">
             <div id="content-col" class="col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 {% block content-col-extraclass  %}{% endblock %}">
+                {% block content_header %}
+                {% endblock %}
                 {% block content %}
                 {% endblock %}
             </div>

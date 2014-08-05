@@ -1,20 +1,14 @@
-{% extends 'base.html' %}
-{% load staticfiles %}
+{% extends 'base_content_header_img.html' %}
 {% load core_tags %}
 
 {% block page_title %}{% block h2 %}Contact Us{% endblock h2 %}{% endblock page_title%}
 
 {% block content %}
-    <div class="subheader-img-wrapper">
-        <img class="img-responsive center-block" src="{% static 'images/subheaders/stan.png' %}" alt="Stan">
-        <p>Watch 'Dog With a Blog' Fridays on Disney Channel</p>
-    </div>
-    
     <div id="primary-text">
         <section >
             <h3>Write Us!</h3>
             <p>Use the form below to contact Claire and Adam. Feel free to ask questions about the wedding, report a problem with this site, or just say hi! Be sure to provide your correct email address so we can get back to you.</p>
-            <form id="contact-form" action="{% url 'core:contact' %}#contact-form" method="post" role="form">{% csrf_token %}
+            <form id="contact-form" action="{% url 'pages:contact' %}#contact-form" method="post" role="form">{% csrf_token %}
                 {% for field in form %}
                     {% if "checkbox" in field|escape %}
                         <div class="checkbox">

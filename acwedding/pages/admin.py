@@ -5,10 +5,12 @@ from .models import Page, Section
 
 class SectionInline(admin.StackedInline):
     model = Section
+    fields = ('heading', 'content')
     extra = 0
     
 class PageAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug' : ('full_name', )}
+    fields = ('full_name', 'slug', 'subheader_image')
     inlines = [SectionInline]
     
 class SectionAdmin(admin.ModelAdmin):

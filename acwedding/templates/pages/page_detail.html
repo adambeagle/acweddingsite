@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base_content_header_img.html' %}
 {% load staticfiles %}
 {% load core_tags %}
 {% load googlemaps_tags %}
@@ -6,31 +6,23 @@
 {% block page_title %}{% block h2 %}{{ page.title }}{% endblock h2 %}{% endblock page_title%}
 
 {% block extra_css %}
-    {% if has_map %}
+    {% if page.has_map %}
         <link rel="stylesheet" type="text/css" href="{% static 'css/gmap.css' %}">
     {% endif %}
     
-    {% if has_minigallery %}
+    {% if page.has_gallery %}
         <link rel="stylesheet" type="text/css" href="{% static 'css/magnific-popup.css' %}">
     {% endif %}
 {% endblock extra_css %}
 
 {% block content %}
-    {% if subheader_image %}
-        <div class="subheader-img-wrapper">
-            <img class="img-responsive center-block" src="{% static 'images/subheaders/'|add:subheader_image.filename %}" alt="{{ subheader_image.alt_text }}">
-            {% if subheader_image.subtitle %}
-                <p>{{ subheader_image.subtitle|safe}}</p>
-            {% endif %}
-        </div>
-    {% endif %}
-    
-    {% for section in section_list %}
+    {% for section in sections %}
         <section>
             <h3>{{ section.heading }}</h3>
             
-            {{ section.content|removetags:'script'|safe|urlize|reverseurls|rsttotable|bullets|safe|linebreaks }}
+            {{ section.content|safe|linebreaks }}
             
+{% comment %}
             {% if section.minigallery %}
                 <div class="row popup-gallery">
                     {% for image in section.minigallery.images.all %}
@@ -62,12 +54,15 @@
             {% if section.map %}
                 {% simple_map section.map %}
             {% endif %}
+        
+{% comment %}
         </section>
     {% endfor %}
+
 {% endblock %}
 
 {% block body_end %}   
-    {% if has_minigallery %}
+    {% if page.has_gallery %}
         <script src="{% static 'js/magnificpopup.min.js' %}" type="text/javascript"></script>
         <script type="text/javascript">
             $(document).ready(function() {

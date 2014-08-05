@@ -1,3 +1,4 @@
+# TODO update after schema rewrite
 from django.db import connection
 from django.test import TestCase
 

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% comment %}NOTE this template expects a context variable named subheader_image, with attributes as in core.models.BaseImage{% endcomment %}
+
+{% block content_header %}
+    {% if subheader_image %}
+        <div class="subheader-img-wrapper center-block">
+                <img class="img-responsive center-block" src="{% static subheader_image.filename %}" alt="{{ subheader_image.alt_text }}">
+                {% if subheader_image.caption %}
+                    <p>{{ subheader_image.caption|safe }}</p>
+                {% endif %}
+        </div>
+    {% endif %}
+{% endblock content_header %}
