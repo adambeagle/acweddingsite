@@ -88,7 +88,7 @@ INSTALLED_APPS = (
     'core',
     'pages',
     'faq',
-    #'googlemaps',
+    'googlemaps',
     #'tourisminfo',
 )
 

@@ -6,15 +6,27 @@ from django.dispatch.dispatcher import receiver
 from core.models import (GalleryAudio, Image, GalleryImage, SluggedModel, 
     TextContentModel
 )
+from googlemaps.models import MultiMarkerMap
 
 class Section(TextContentModel):
     page = models.ForeignKey('Page')
     heading = models.CharField(max_length=64)
     audio = generic.GenericRelation(GalleryAudio)
-    #TODO map
+    map = models.ForeignKey(
+        MultiMarkerMap, 
+        null=True, 
+        blank=True,
+        on_delete=models.SET_NULL
+    )
 
     def __str__(self):
         return "({0}) {1}".format(self.page.full_name, self.heading)
+        
+    def save(self, **kwargs):
+        super().save(**kwargs)
+        if self.map is not None:
+            self.page.has_map = True
+            self.page.save()
 
 class SectionGallery(models.Model):
     section = models.OneToOneField(Section)
@@ -29,7 +41,7 @@ class SectionGallery(models.Model):
         self.section.page.has_gallery = True
         self.section.page.save()
 
-@receiver(models.signals.pre_delete, sender=SectionGallery)
+@receiver(models.signals.pre_delete, sender=(SectionGallery, MultiMarkerMap))
 def _sectiongallery_delete(sender, instance, **kwargs):
     section = instance.section
     section.page.update_bools(ignore_section_id=section.id)
@@ -50,7 +62,8 @@ class Page(SluggedModel):
             if section.gallery_images.all():
                 has_gallery = True
                 
-            # TODO check map
+            if section.map is not None:
+                has_map = True
             
             if has_gallery and has_map:
                 break

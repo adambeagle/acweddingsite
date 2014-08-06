@@ -15,8 +15,8 @@
 function initialize() {
     var map_canvas = document.getElementById('map_canvas');
     var map_options = {
-		center: new google.maps.LatLng({{ map.startLat }}, {{ map.startLong }}),
-		zoom: {{ map.startZoom }},
+		center: new google.maps.LatLng({{ map.start_lat }}, {{ map.start_long }}),
+		zoom: {{ map.start_zoom }},
 		mapTypeControl: true,
 		mapTypeControlOptions: {style: google.maps.MapTypeControlStyle.DROPDOWN_MENU},
 		mapTypeId: google.maps.MapTypeId.ROADMAP
@@ -26,10 +26,10 @@ function initialize() {
     
     {% for marker in map.markers.all %}
         var {{ marker.name }}Marker = new google.maps.Marker({
-            position: new google.maps.LatLng({{ marker.lat }}, {{ marker.long }}),
+            position: new google.maps.LatLng({{ marker.location.latitude }}, {{ marker.location.longitude }}),
             map: map,
-            title: "{{ marker.full_name }}",
-            icon: "{% static 'images/map_icons/'|add:marker.icon.filename %}"
+            title: "{{ marker.location.full_name }}",
+            icon: "{% static marker.icon.static_path %}"
         });
     {% endfor %}
 }

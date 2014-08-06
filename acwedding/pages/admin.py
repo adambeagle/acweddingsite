@@ -14,7 +14,11 @@ class PageAdmin(admin.ModelAdmin):
     inlines = [SectionInline]
     
 class SectionAdmin(admin.ModelAdmin):
+    fields = ('heading', 'content', 'map')
     inlines = [GalleryAudioInline]
+    
+    def has_add_permission(self, request):
+        return False
     
 class SectionGalleryAdmin(admin.ModelAdmin):
     inlines = [GalleryImageInline]

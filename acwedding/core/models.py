@@ -16,6 +16,9 @@ class BaseStaticFile(models.Model):
     Designed for use with models that represent or point to a static asset.
     Provides static_path and filename cached properties.
     """
+    def __str__(self):
+        return self.static_path
+    
     @cached_property
     def filename(self):
         return basename(self.full_path)
@@ -37,9 +40,6 @@ class BaseAudio(BaseStaticFile):
     )
     caption = models.CharField(max_length=128)
     
-    def __str__(self):
-        return self.static_path
-    
     class Meta:
         abstract = True
 
@@ -51,9 +51,6 @@ class BaseImage(BaseStaticFile):
     )
     alt_text = models.CharField(max_length=64, null=True, blank=True)
     caption  = models.CharField(max_length=256, null=True, blank=True)
-    
-    def __str__(self):
-        return self.static_path
         
     @cached_property
     def thumbnail_path(self):
@@ -77,7 +74,7 @@ class SluggedModel(models.Model):
     
     class Meta:
         abstract = True
-        
+
 class TextContentModel(models.Model):
     content = models.TextField()
     
@@ -110,7 +107,9 @@ class GalleryImage(BaseImage):
         
 class Image(BaseImage):
     """Use with ForeignKey to give external model single image."""
-    pass
+    def __init__(self, *args, **kwargs):
+        print('in image init')
+        super().__init__(*args, **kwargs)
         
 class Link(models.Model):
     url = models.URLField()

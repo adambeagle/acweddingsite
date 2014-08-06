@@ -9,18 +9,6 @@ ul_pattern = r"^[*][ \t](\S[^\r\n]*)[\r]?$"
 url_block_pattern = r"\[(.+?|\\\])\]\((\w+(?:\:\w+)?(?: [\w-]+)*)\)"
 wedding_date = datetime(2015, 5, 16, 13)
 
-class NonDBImage:
-    """
-    May be used to simulate a BaseImage model object.
-    
-    Use with caution; there is no validation that the image referred to 
-    exists.
-    """
-    def __init__(self, static_path, alt_text, caption):
-        self.static_path = static_path
-        self.alt_text = alt_text
-        self.caption = caption
-        
 def asterisks_to_ul(value):
     """
     """

@@ -96,7 +96,6 @@
                 title: "{{ receptionMarker.full_name }}",
                 icon: "{% static 'images/map_icons/'|add:receptionMarker.icon.filename %}"
             });
-
         }
         google.maps.event.addDomListener(window, 'load', initialize);
         </script>

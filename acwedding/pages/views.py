@@ -5,14 +5,14 @@ from django.views.generic.edit import FormView
 
 from .forms import ContactForm
 from .models import Page, Section
-from core.util import NonDBImage
+from core.models import Image
 
 class ContactView(FormView):
     template_name = 'pages/contact.html'
     success_url = reverse_lazy('core:contact_thanks')
     form_class = ContactForm
-    subheader_image = NonDBImage(
-        static_path='images/subheaders/stan.png',
+    subheader_image = Image(
+        full_path='/static/images/subheaders/stan.png',
         alt_text='Stan',
         caption="Watch Dog With a Blog Fridays on Disney Channel"
     )

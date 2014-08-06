@@ -1,39 +1,25 @@
 from django import template
 
+from googlemaps.util import linkable_latitude, linkable_longitude
+
 register = template.Library()
 
 @register.filter(is_safe=True)
 def linkablelatitude(value):
     """
-    Append proper direction to a float represented latitude.
-    
-    Example:
-      In: 45.06112
-      Out: 45.06112N
+    Alias to googlemaps.util.linkable_latitude
     """
-    value = float(value)
-    direction = 'N' if value > 0 else 'S'
-    value = abs(value)
-    
-    return '{0}{1}'.format(value, direction)
+    return linkable_latitude(value)
 
 @register.filter(is_safe=True)
 def linkablelongitude(value):
     """
-    Append proper direction to a float represented longitude.
-    
-    Example:
-      In: -83.472899
-      Out: 83.472899W
+    Alias to googlemaps.util.linkable_longitude
     """
-    value = float(value)
-    direction = 'E' if value > 0 else 'W'
-    value = abs(value)
-    
-    return '{0}{1}'.format(value, direction)
+    return linkable_longitude(value)
 
-@register.inclusion_tag('googlemaps/simple.html')
-def simple_map(map):
+@register.inclusion_tag('googlemaps/multi_marker.html')
+def multi_marker_map(multi_marker_map):
     """
     Embeds a simple Google map onto the page at the location of the 
     template tag. A simple map can contain any number of markers, 
@@ -41,7 +27,6 @@ def simple_map(map):
     classes in models.py.
     
     The Google Maps JavaScript API v3 is used to embed the map. 
-    
     """
-    return { 'map' : map }
+    return { 'map' : multi_marker_map }
     
