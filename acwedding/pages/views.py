@@ -12,7 +12,7 @@ class ContactView(FormView):
     success_url = reverse_lazy('core:contact_thanks')
     form_class = ContactForm
     subheader_image = NonDBImage(
-        filename='images/subheaders/stan.png',
+        static_path='images/subheaders/stan.png',
         alt_text='Stan',
         caption="Watch Dog With a Blog Fridays on Disney Channel"
     )

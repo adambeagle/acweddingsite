@@ -16,8 +16,8 @@ class NonDBImage:
     Use with caution; there is no validation that the image referred to 
     exists.
     """
-    def __init__(self, filename, alt_text, caption):
-        self.filename = filename
+    def __init__(self, static_path, alt_text, caption):
+        self.static_path = static_path
         self.alt_text = alt_text
         self.caption = caption
         

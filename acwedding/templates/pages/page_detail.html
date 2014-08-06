@@ -2,7 +2,6 @@
 {% load staticfiles %}
 {% load core_tags %}
 
-
 {% block page_title %}{% block h2 %}{{ page.title }}{% endblock h2 %}{% endblock page_title %}
 
 {% block extra_css %}
@@ -19,9 +18,9 @@
     {% for section in sections %}
         <section>
             <h3>{{ section.heading }}</h3>
-            
+
             {{ section.content|safe|linebreaks }}
-        
+
             {% if section.sectiongallery %}
                 <div class="row popup-gallery">
                     {% for image in section.sectiongallery.images.all %}
@@ -34,7 +33,6 @@
                 </div>
             {% endif %}
 
-            
             {% for audio in section.audio.all %}
                 <div>
                      <p><em>{{ audio.caption }}</em></p>
@@ -52,10 +50,8 @@
                     </audio>
                 </div>
             {% endfor %}
-        
         </section>
     {% endfor %}
-
 {% endblock %}
 
 {% block body_end %}   
@@ -86,4 +82,3 @@
         </script>
     {% endif %}
 {% endblock body_end %}
-
