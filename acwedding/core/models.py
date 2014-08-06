@@ -33,7 +33,7 @@ class BaseAudio(BaseStaticFile):
     full_path = models.FilePathField(
         path=settings.BASE_DIR.child('static', 'audio'),
         recursive=True,
-        max_length=64
+        max_length=128
     )
     caption = models.CharField(max_length=128)
     
@@ -97,7 +97,7 @@ class TextContentModel(models.Model):
 class Audio(BaseAudio):
     pass
     
-class AudioSet(BaseAudio):
+class GalleryAudio(BaseAudio):
     content_type = models.ForeignKey(ContentType)
     object_id = models.PositiveIntegerField() # Change?
     content_object = generic.GenericForeignKey('content_type', 'object_id')

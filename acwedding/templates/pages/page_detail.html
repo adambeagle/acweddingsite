@@ -22,19 +22,36 @@
             
             {{ section.content|safe|linebreaks }}
         
-            {% with images=section.gallery_images.all %}
-                {% if images %}
-                    <div class="row popup-gallery">
-                        {% for image in images %}
-                            <div class="col-md-2 col-sm-2 col-xs-4">
-                                <a href="{% static image.static_path %}" class="thumbnail" title="{{ image.caption }}">
-                                    <img src="{% static image.thumbnail_path|add:'.thumbnail' %}" alt="{{ image.caption }}" title="{{ image.caption }}">
-                                </a>
-                            </div>
+            {% if section.sectiongallery %}
+                <div class="row popup-gallery">
+                    {% for image in section.sectiongallery.images.all %}
+                        <div class="col-md-2 col-sm-2 col-xs-4">
+                            <a href="{% static image.static_path %}" class="thumbnail" title="{{ image.caption }}">
+                                <img src="{% static image.thumbnail_path|add:'.thumbnail' %}" alt="{{ image.caption }}" title="{{ image.caption }}">
+                            </a>
+                        </div>
                     {% endfor %}
-                    </div>
-                {% endif %}
-            {% endwith %}
+                </div>
+            {% endif %}
+
+            
+            {% for audio in section.audio.all %}
+                <div>
+                     <p><em>{{ audio.caption }}</em></p>
+                    <audio controls>
+                        {% comment %} 
+                            !!!!!!!!!!!!!!!!
+                            IMPORTANT: It is assumed each audio has .mp3 and .ogg versions with equivalent base filenames.
+                            !!!!!!!!!!!!!!!!
+                        {% endcomment %}
+                        {% with noext=audio.static_path|splitext %}
+                            <source src="{% static noext %}.mp3" type="audio/mpeg">
+                            <source src="{% static noext %}.ogg" type="audio/ogg">
+                            <embed height="50" width="100" src="{% static noext %}.mp3">
+                        {% endwith %}
+                    </audio>
+                </div>
+            {% endfor %}
         
         </section>
     {% endfor %}
