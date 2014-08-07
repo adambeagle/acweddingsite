@@ -1,8 +1,20 @@
 from django.conf.urls import patterns, url
 
-from .views import AttractionsIndexView, POIDetailView
+from .views import (AccommodationIndexView, PointOfInterestIndexView, 
+    PointOfInterestDetailView
+)
 
 urlpatterns = patterns('',
-    url(r'^attractions-and-food/$', AttractionsIndexView.as_view(), name="attractions_index"),
-    url(r'^attractions-and-food/(?P<slug>[\w-]+)/$', POIDetailView.as_view(), name="detail"),
+    url(r'^accommodations/$',
+        AccommodationIndexView.as_view(),
+        name='accommodations_index'
+    ),
+    url(r'^attractions-and-food/$', 
+        PointOfInterestIndexView.as_view(), 
+        name="attractions_index"
+    ),
+    url(r'^attractions-and-food/(?P<slug>[\w-]+)/$', 
+        PointOfInterestDetailView.as_view(), 
+        name="detail"
+    ),
 )

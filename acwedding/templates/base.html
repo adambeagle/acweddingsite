@@ -53,16 +53,14 @@
                             <li><a href="{% url 'pages:detail' 'transportation' %}" title="Transportation">Transportation</a></li>
                         </ul>
                     </li>
-                    {% comment %}
                     <li class="dopdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">area information<span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="" title="Hotel, motel, and cabin options">Accommodations</a></li>
+                            <li><a href="{% url 'tourisminfo:accommodations_index' %}" title="Hotel, motel, and cabin options">Accommodations</a></li>
                             <li><a href="{% url 'tourisminfo:attractions_index' %}" title="Attractions and Food">Attractions &amp; Food</a></li>
                             <li><a href="{% url 'pages:detail' 'history' %}" title="History">History</a></li>
                         </ul>
                     </li>
-                    {% endcomment %}
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="{% url 'faq:index' %}">FAQ</a></li>

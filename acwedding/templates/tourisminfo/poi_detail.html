@@ -3,15 +3,15 @@
 {% load core_tags %}
 {% load googlemaps_tags %}
 
-{% block page_title %}{{ poi.full_name }}{% endblock page_title %}
+{% block page_title %}{{ poi.location.full_name }}{% endblock page_title %}
 
 {% block h2 %}
-    <img src="{% static 'images/map_icons/'|add:poi.marker.icon.filename %}" class="hidden-xs">
+    <img src="{% static poi.marker.icon.static_path %}" class="hidden-xs">
     &nbsp;&nbsp;{{ poi.full_name }}&nbsp;&nbsp;
-    <img src="{% static 'images/map_icons/'|add:poi.marker.icon.filename %}"  class="hidden-xs">
+    <img src="{% static poi.marker.icon.static_path %}"  class="hidden-xs">
 {% endblock %}
 
-{% block extra_css %}<link rel="stylesheet" type="text/css" href="{% static 'css/gmap.css' %}" />{% endblock %}
+{% block extra_css %}<link rel="stylesheet" type="text/css" href="{% static 'css/gmap.css' %}">{% endblock %}
 
 {% block breadcrumb %}
     <ol class="breadcrumb">
@@ -24,9 +24,9 @@
 {% block content %}
     {% if poi.image %}
         <div class="subheader-img-wrapper">
-                <img src="{% static 'images/tourisminfo/'|add:poi.image.filename %}" class="img-responsive center-block">
-                {% if poi.image.subtitle %}
-                    <p class="text-center">{{ poi.image.subtitle }}</p>
+                <img src="{% static poi.image.static_path %}" class="img-responsive center-block">
+                {% if poi.image.caption %}
+                    <p class="text-center">{{ poi.image.caption }}</p>
                 {% endif %} 
         </div>
     {% endif %}
@@ -34,7 +34,7 @@
     <div id="primary-text">
         <section>
             <h3>Description</h3>
-            <p>{{ poi.description|safe|reverseurls|linebreaks }}<p>
+            <p>{{ poi.description|safe|linebreaks }}<p>
         </section>
         
         {% if poi.review %}
@@ -46,20 +46,21 @@
         
         <section>
             <h3>External Links</h3>
-            <a href="{{ poi.link }}">{{ poi.link_description }}</a><br>
+            {% for link in poi.external_links
+                <a href="{{ link.url }}" title="{{ link.title }}">{{ link.text }}</a><br>
+            {% endfor %}
         </section>
 
         <section>
             <h3>Map</h3>
-
             <div class="gmap-wrapper hidden-xs text-center">
                 <div id="map_canvas"></div>
                 <p>
                     Note: The ceremony and reception sites are indicated with pink markers.<br>
-                    <a href="https://www.google.com/maps/place/{{ poi.marker.lat|linkablelatitude }}+{{ poi.marker.long|linkablelongitude }}/@{{ poi.marker.lat }},{{ poi.marker.long }},15z">View at Google Maps</a>
+                    <a href="https://www.google.com/maps/place/{{ poi.location.latitude|linkablelatitude }}+{{ poi.location.longitude|linkablelongitude }}/@{{ poi.location.latitude }},{{ poi.location.longitude }},15z">View at Google Maps</a>
                 </p>
             </div>
-            <p class="visible-xs"><strong><a href="https://www.google.com/maps/place/{{ poi.marker.lat|linkablelatitude }}+{{ poi.marker.long|linkablelongitude }}/@{{ poi.marker.lat }},{{ poi.marker.long }},15z">View location at Google Maps.</a></strong><br>Embedded map available on larger devices.</p>
+            <p class="visible-xs"><strong><a href="https://www.google.com/maps/place/{{ poi.location.latitude|linkablelatitude }}+{{ poi.location.longitude|linkablelongitude }}/@{{ poi.location.latitude }},{{ poi.location.longitude }},15z">View location at Google Maps.</a></strong><br>Embedded map available on larger devices.</p>
         </section>
 
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxCuyULS1j9utodXGtNfFQs1fpe0nwoXM&sensor=false"></script>
@@ -67,7 +68,7 @@
         function initialize() {
             var map_canvas = document.getElementById('map_canvas');
             var map_options = {
-                center: new google.maps.LatLng({{ poi.marker.lat }}, {{ poi.marker.long }}),
+                center: new google.maps.LatLng({{ poi.location.latitude }}, {{ poi.location.longitude }}),
                 zoom: 12,
                 mapTypeControl: true,
                 mapTypeControlOptions: {style: google.maps.MapTypeControlStyle.DROPDOWN_MENU},
@@ -77,24 +78,24 @@
             var map = new google.maps.Map(map_canvas, map_options);
             
             var {{ poi.marker.name }}Marker = new google.maps.Marker({
-                position: new google.maps.LatLng({{ poi.marker.lat }}, {{ poi.marker.long }}),
+                position: new google.maps.LatLng({{ poi.location.latitude }}, {{ poi.location.longitude }}),
                 map: map,
                 title: "{{ poi.marker.full_name|safe }}",
                 icon: "{% static 'images/map_icons/'|add:poi.marker.icon.filename %}"
             });
             
             var ceremonyMarker = new google.maps.Marker({
-                position: new google.maps.LatLng({{ ceremonyMarker.lat }}, {{ ceremonyMarker.long }}),
+                position: new google.maps.LatLng({{ ceremony_marker.lat }}, {{ ceremony_marker.long }}),
                 map: map,
-                title: "{{ ceremonyMarker.full_name }}",
-                icon: "{% static 'images/map_icons/'|add:ceremonyMarker.icon.filename %}"
+                title: "{{ ceremony_marker.location.full_name }}",
+                icon: "{% static ceremony_marker.icon.static_path %}"
             });
             
             var receptionMarker = new google.maps.Marker({
-                position: new google.maps.LatLng({{ receptionMarker.lat }}, {{ receptionMarker.long }}),
+                position: new google.maps.LatLng({{ reception_marker.lat }}, {{ reception_marker.long }}),
                 map: map,
-                title: "{{ receptionMarker.full_name }}",
-                icon: "{% static 'images/map_icons/'|add:receptionMarker.icon.filename %}"
+                title: "{{ reception_marker.location.full_name }}",
+                icon: "{% static reception_marker.icon.static_path %}"
             });
         }
         google.maps.event.addDomListener(window, 'load', initialize);

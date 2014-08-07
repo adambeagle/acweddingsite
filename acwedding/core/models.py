@@ -62,6 +62,17 @@ class BaseImage(BaseStaticFile):
 
     class Meta:
         abstract = True
+        
+class BaseLink(models.Model):
+    url = models.URLField()
+    text = models.CharField(max_length=64)
+    title = models.CharField(max_length=32)
+    
+    def __str__(self):
+        return "{0} ({1})".format(self.text, self.url)
+        
+    class Meta:
+        abstract = True
 
 # TODO Auto-create slug with slugify on save()?
 # Alternative is prepopulate in admin 
@@ -107,17 +118,15 @@ class GalleryImage(BaseImage):
         
 class Image(BaseImage):
     """Use with ForeignKey to give external model single image."""
-    def __init__(self, *args, **kwargs):
-        print('in image init')
-        super().__init__(*args, **kwargs)
+    pass
         
-class Link(models.Model):
-    url = models.URLField()
-    text = models.CharField(max_length=64)
-    title = models.CharField(max_length=32)
+class GenericLink(BaseLink):
+    content_type = models.ForeignKey(ContentType)
+    object_id = models.PositiveIntegerField() 
+    content_object = generic.GenericForeignKey('content_type', 'object_id')
     
-    def __str__(self):
-        return "{0} ({1})".format(self.text, self.url)
+class Link(BaseLink):
+    pass
     
 class Location(SluggedModel):
     latitude = models.FloatField()

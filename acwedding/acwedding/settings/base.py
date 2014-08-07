@@ -89,7 +89,7 @@ INSTALLED_APPS = (
     'pages',
     'faq',
     'googlemaps',
-    #'tourisminfo',
+    'tourisminfo',
 )
 
 # A sample logging configuration. The only tangible logging

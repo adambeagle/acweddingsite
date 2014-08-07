@@ -6,7 +6,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^faq/', include('faq.urls', namespace='faq')),
-    #url(r'^area-information/', include('tourisminfo.urls', namespace='tourisminfo')),
+    url(r'^area-information/', include('tourisminfo.urls', namespace='tourisminfo')),
     url(r'^', include('pages.urls', namespace='pages')),
 )
 

@@ -1,12 +1,13 @@
 from django.contrib import admin
 
-from .models import Image, PointOfInterest
+from .models import Accommodation, PointOfInterest
+from core.admin import GenericLinkInline
 
-class ImageInline(admin.TabularInline):
-    model = Image
-    
 class PointOfInterestAdmin(admin.ModelAdmin):
-    inlines = [ImageInline]
-    readonly_fields = ('slug', )
-    
+    fields = ('marker', 'category', 'short_description', 'content',  
+        'review', 'image', 'highlight'
+    )
+    inlines = (GenericLinkInline, )
+
+admin.site.register(Accommodation, PointOfInterestAdmin)
 admin.site.register(PointOfInterest, PointOfInterestAdmin)

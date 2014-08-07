@@ -1,21 +1,46 @@
+from django.core.exceptions import ObjectDoesNotExist
 from django.views.generic import DetailView, ListView
 
-from .models import PointOfInterest
+from .models import Accommodation, PointOfInterest
 from googlemaps.models import Marker
 
-class AttractionsIndexView(ListView):
-    template_name = 'tourisminfo/attractions_index.html'
-    model = PointOfInterest
+class BasePointOfInterestIndexView(ListView):
     context_object_name = 'poi_list'
     
-class POIDetailView(DetailView):
-    template_name = 'tourisminfo/detail.html'
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['categories'] = self.model.CATEGORY_CHOICES
+        
+        return context
+
+class AccommodationIndexView(BasePointOfInterestIndexView):
+    model = Accommodation
+    template_name = 'tourisminfo/accommodations_index.html'
+
+
+class PointOfInterestIndexView(BasePointOfInterestIndexView):
     model = PointOfInterest
+    template_name = 'tourisminfo/poi_index.html'
+
+
+class PointOfInterestDetailView(DetailView):
+    model = PointOfInterest
+    template_name = 'tourisminfo/poi_detail.html'
     context_object_name = 'poi'
     
+    try:
+        ceremony_marker = Marker.objects.get(name='ceremony')
+    except ObjectDoesNotExist:
+        ceremony_marker = None
+        
+    try:
+        reception_marker = Marker.objects.get(name='reception')
+    except ObjectDoesNotExist:
+        reception_marker = None
+    
     def get_context_data(self, **kwargs):
-        context = super().get_context_data()
-        context['ceremonyMarker'] = Marker.objects.get(pk='church')
-        context['receptionMarker'] = Marker.objects.get(pk='reception')
+        context = super().get_context_data(**kwargs)
+        context['ceremony_marker'] = self.ceremony_marker
+        context['reception_marker'] = self.reception_marker
         
         return context
