@@ -7,3 +7,5 @@
 {% endblock page_description %}
 
 {% block empty_description %}No accommodation information available at this time{% endblock empty_description %}
+
+{% block detail_url %}{% url 'tourisminfo:accommodation_detail' poi.slug %}{% endblock %}

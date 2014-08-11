@@ -12,16 +12,22 @@ class BasePointOfInterestIndexView(ListView):
         context['categories'] = self.model.CATEGORY_CHOICES
         
         return context
+        
+class AccommodationDetailView(DetailView):
+    model = Accommodation
+    template_name = 'tourisminfo/accommodation_detail.html'
+    context_object_name = 'poi'
+    
+    def get_slug_field(self):
+        return 'marker__location__slug'
 
 class AccommodationIndexView(BasePointOfInterestIndexView):
     model = Accommodation
     template_name = 'tourisminfo/accommodations_index.html'
 
-
 class PointOfInterestIndexView(BasePointOfInterestIndexView):
     model = PointOfInterest
     template_name = 'tourisminfo/poi_index.html'
-
 
 class PointOfInterestDetailView(DetailView):
     model = PointOfInterest
@@ -44,3 +50,12 @@ class PointOfInterestDetailView(DetailView):
         context['reception_marker'] = self.reception_marker
         
         return context
+        
+    def get_slug_field(self):
+        return 'marker__location__slug'
+        
+    #~ def get_object(self):
+        #~ qset = self.get_queryset()
+        
+        #~ return qset.objects.get(marker__location__slug='')
+        

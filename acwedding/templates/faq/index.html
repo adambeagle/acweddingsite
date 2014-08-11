@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-{% load core_tags %}
 
 {% block page_title %}{% block h2 %}FAQ{% endblock h2 %}{% endblock page_title %}
 
@@ -12,12 +11,10 @@
             <div class="panel-heading">
                 <h3 class="panel-title"><strong>{{ entry.question }}</strong></h3>
             </div>
-            <div class="panel-body">{{ entry.answer|reverseurls|safe}}</div>
+            <div class="panel-body">{{ entry.answer|safe}}</div>
         </div>
         {% empty %}
         <p class="text-center">No FAQ entries at this time.</p>
         {% endfor %}
     </div>
-
 {% endblock content %}
-

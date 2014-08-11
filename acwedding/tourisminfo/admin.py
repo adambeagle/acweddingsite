@@ -8,6 +8,12 @@ class PointOfInterestAdmin(admin.ModelAdmin):
         'review', 'image', 'highlight'
     )
     inlines = (GenericLinkInline, )
+    
+class AccommodationAdmin(PointOfInterestAdmin):
+    fields = ('marker', 'category', 'short_description', 'description',  
+        'amenities', 'review', 'image', 'highlight'
+    )
+    inlines = (GenericLinkInline, )
 
-admin.site.register(Accommodation, PointOfInterestAdmin)
+admin.site.register(Accommodation, AccommodationAdmin)
 admin.site.register(PointOfInterest, PointOfInterestAdmin)

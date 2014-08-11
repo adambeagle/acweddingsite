@@ -7,3 +7,5 @@
 {% endblock page_description %}
 
 {% block empty_description %}No attraction or food information available at this time{% endblock empty_description %}
+
+{% block detail_url %}{% url 'tourisminfo:attraction_detail' poi.slug %}{% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'tourisminfo/poi_detail.html' %}
+
+{% block extra_sections %}
+    {% if poi.amenities %}
+        <section>
+            <h3>Amenities</h3>
+            {{ poi.amenities|safe|linebreaks }}
+        </section>
+    {% endif %}
+{% endblock extra_sections %}
