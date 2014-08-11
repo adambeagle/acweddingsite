@@ -31,6 +31,9 @@ class PointOfInterest(BasePointOfInterest):
     )
     category = models.CharField(max_length=16, choices=CATEGORY_CHOICES)
     
+    class Meta:
+        verbose_name_plural = 'Points of interest'
+    
 class Accommodation(BasePointOfInterest):
     CATEGORY_CHOICES = (
         ('hotel', 'Hotel'),

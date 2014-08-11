@@ -41,6 +41,9 @@ class SectionGallery(models.Model):
         
         self.section.page.has_gallery = True
         self.section.page.save()
+        
+    class Meta:
+        verbose_name_plural = 'Section galleries'
 
 @receiver(models.signals.pre_delete, sender=(SectionGallery, MultiMarkerMap))
 def _sectiongallery_delete(sender, instance, **kwargs):
