@@ -8,6 +8,15 @@ from django.db import models
 from django.utils.functional import cached_property
 
 from core import util
+
+#================================================================
+# CUSTOM FIELDS
+class CustomTextField(models.TextField):
+    def to_python(self, value):
+        value = util.reverse_urls(
+            util.rst_to_table(util.asterisks_to_ul(value))
+        )
+        return super().to_python(value)
     
 # ============================================================================
 # BASE CLASSES
@@ -86,21 +95,6 @@ class SluggedModel(models.Model):
     class Meta:
         abstract = True
 
-class TextContentModel(models.Model):
-    content = models.TextField()
-    
-    def save(self, *args, **kwargs):
-        """
-        Perform custom processing on content before save (reverse urls, etc)
-        """
-        self.content = util.reverse_urls(
-            util.rst_to_table(util.asterisks_to_ul(self.content))
-        )
-        
-        super().save(*args, **kwargs)
-    
-    class Meta:
-        abstract = True
 #=============================================================================
 class Audio(BaseAudio):
     pass

@@ -1,23 +1,20 @@
 from django.contrib.contenttypes import generic
 from django.db import models
 
-from core.models import Image, GenericLink, TextContentModel
+from core.models import CustomTextField, Image, GenericLink
 from googlemaps.models import Marker
 
-class BasePointOfInterest(TextContentModel):
+class BasePointOfInterest(models.Model):
     # To decouple this model from this project, use core.Location instead of 
     # googlemaps.Marker for similar functionality (Marker has a Location 
     # attribute).
+    description = CustomTextField()
     marker = models.ForeignKey(Marker)
-    review = models.TextField(blank=True)
+    review = CustomTextField(blank=True)
     highlight = models.BooleanField(default=False)
     external_links = generic.GenericRelation(GenericLink)
     short_description = models.CharField(max_length=128)
     image = models.ForeignKey(Image, null=True, blank=True)
-    
-    @property
-    def description(self):
-        return self.content
         
     @property
     def location(self):

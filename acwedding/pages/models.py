@@ -3,12 +3,13 @@ from django.contrib.contenttypes import generic
 from django.db import models
 from django.dispatch.dispatcher import receiver
 
-from core.models import (GalleryAudio, Image, GalleryImage, SluggedModel, 
-    TextContentModel
+from core.models import (CustomTextField, GalleryAudio, Image, 
+    GalleryImage, SluggedModel
 )
 from googlemaps.models import MultiMarkerMap
 
-class Section(TextContentModel):
+class Section(models.Model):
+    content = CustomTextField()
     page = models.ForeignKey('Page')
     heading = models.CharField(max_length=64)
     audio = generic.GenericRelation(GalleryAudio)

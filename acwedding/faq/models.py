@@ -1,5 +1,7 @@
 from django.db import models
 
+from core.models import CustomTextField
+
 class Entry(models.Model):
     
     # Note id is explicit here so it can be easily edited via the
@@ -7,7 +9,7 @@ class Entry(models.Model):
     # field; It's likely a user may want to edit that order.
     id = models.PositiveSmallIntegerField(primary_key=True)
     question = models.CharField(max_length=75)
-    answer = models.TextField()
+    answer = CustomTextField()
 
     def __str__(self):
         return "{0} - {1}".format(str(self.id), str(self.question))
