@@ -1,6 +1,8 @@
 from datetime import datetime
 import re
 
+from django.core.urlresolvers import reverse
+
 field_list_pattern = (
     r"^(?:<p>)?:((?:[^\n\r\f\v:]|\\:)+):[\t ]*(\S[^\n\r\v\f]+)" +
     r"(?:</p>|<br />)?\r?$"
