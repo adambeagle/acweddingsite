@@ -14,7 +14,7 @@ from core import util
 class CustomTextField(models.TextField):
     def to_python(self, value):
         value = util.reverse_urls(
-            util.rst_to_table(util.asterisks_to_ul(value))
+            util.rst_to_table(value)
         )
         return super().to_python(value)
     
@@ -53,6 +53,7 @@ class BaseAudio(BaseStaticFile):
         abstract = True
 
 class BaseImage(BaseStaticFile):
+    
     full_path = models.FilePathField(
         path=settings.BASE_DIR.child('static', 'images'),
         recursive=True,
@@ -64,8 +65,8 @@ class BaseImage(BaseStaticFile):
     @cached_property
     def thumbnail_path(self):
         return re.sub(
-            r"^images/[^/]+(.+)$", 
-            r'images/tn\1',
+            r"^images/(?:.*/)*(.+)$", 
+            r'images/tn/\1',
             self.static_path
         )
 
@@ -83,8 +84,6 @@ class BaseLink(models.Model):
     class Meta:
         abstract = True
 
-# TODO Auto-create slug with slugify on save()?
-# Alternative is prepopulate in admin 
 class SluggedModel(models.Model):
     full_name = models.CharField(max_length=128)
     slug = models.SlugField(max_length=128)
@@ -109,6 +108,9 @@ class GalleryImage(BaseImage):
     content_type = models.ForeignKey(ContentType)
     object_id = models.PositiveIntegerField() # Change?
     content_object = generic.GenericForeignKey('content_type', 'object_id')
+    
+    class Meta:
+        ordering = ['id']
         
 class Image(BaseImage):
     """Use with ForeignKey to give external model single image."""

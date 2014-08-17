@@ -3,8 +3,8 @@ import re
 from django.test import TestCase
 from django.utils.html import linebreaks
 
-from .templatetags.core_tags import (bullets, field_list_pattern, rsttotable, 
-    ul_pattern, url_block_pattern)
+from core.util import field_list_pattern, url_block_pattern
+from .templatetags.core_tags import rst_to_table
     
 def _re_match(pattern, s, flags=0):
     """
@@ -31,12 +31,12 @@ class FieldRegexTestCase(TestCase):
         self.assertIsNone(_re_match(p, ':not a heading:'))
         self.assertIsNone(_re_match(p, 'Lorem :heading: text'))
         
-    def text_basic(self):
+    def test_basic(self):
         """Verify simple, properly formatted blocks are matched."""
         p = field_list_pattern
         
         self.assertEqual(_re_match(p, ':head: \ttext\n'), ':head: \ttext')
-        self.assertEqual(_re_match(p, ':*: text\n', ':*: text'))
+        self.assertEqual(_re_match(p, ':*: text\n'), ':*: text')
         self.assertEqual(_re_match(p, 'Lorem\n:head: text', re.M), 
             ':head: text')
         self.assertEqual(_re_match(p, 'Lorem\n\n:head: text', re.M), 
@@ -93,24 +93,6 @@ class FieldRegexTestCase(TestCase):
 class FiltersTestCase(TestCase):
     """Test this app's custom filters."""
     
-    def test_bullets(self):
-        text = ('One paragraph line\n' +
-        'Second paragraph line\n\n' +
-        '* Bullet 1\n' +
-        '*\tBullet 2\n\n' +
-        'Another paragraph'
-        )
-        
-        text_ulized = ('One paragraph line\n' +
-        'Second paragraph line\n\n' +
-        '<ul><li>Bullet 1</li>' +
-        '<li>Bullet 2</li></ul>\n' +
-        'Another paragraph'
-        )
-        
-        self.assertEqual(bullets(text), text_ulized)
-        
-    
     def test_rsttotable(self):
         long = ('This is a paragraph.\n\n' + 
             ':Heading: Some text \n' +
@@ -118,34 +100,21 @@ class FiltersTestCase(TestCase):
             'This is another paragraph.')
 
         long_tabled = ('This is a paragraph.\n\n' +
-            '<table><tr><td>Heading:</td><td>Some text </td></tr>' + 
+            '<table class="table"><tr><td>Heading:</td><td>Some text </td></tr>' + 
             '<tr><td>Heading 2:</td><td>More text</td></tr></table>\n' +
             'This is another paragraph.')
             
         long_tabled_linebreaks = ('<p>This is a paragraph</p>' +
-            '<table><tr><td>Heading:</td><td>Some text </td></tr>' + 
+            '<table class="table"><tr><td>Heading:</td><td>Some text </td></tr>' + 
             '<tr><td>Heading 2:</td><td>More text</td></tr></table>\n' +
             '<p>This is another paragraph.</p>')
             
         simple = ':h1: text\n:h2: text2'
-        simple_tabled = ('<table><tr><td>h1:</td><td>text</td></tr>' +
+        simple_tabled = ('<table class="table"><tr><td>h1:</td><td>text</td></tr>' +
             '<tr><td>h2:</td><td>text2</td></tr></table>')
         
-        self.assertEqual(rsttotable(simple), simple_tabled)
-        self.assertEqual(rsttotable(long), long_tabled)
-    
-class ULRegexTestCase(TestCase):
-    """Test the ul_pattern regular expression"""
-    
-    def test_simple(self):
-        p = ul_pattern
-        
-        self.assertEqual(_re_match(p, '* Lorem ipsum'), '* Lorem ipsum')
-        self.assertEqual(_re_match(p, '*\tLorem ipsum'), '*\tLorem ipsum')
-        
-    def test_group(self):
-        m = re.match(ul_pattern, '* Lorem ipsum\n')
-        self.assertEqual(m.group(1), 'Lorem ipsum')
+        self.assertEqual(rst_to_table(simple), simple_tabled)
+        self.assertEqual(rst_to_table(long), long_tabled)
     
 class URLRegexTestCase(TestCase):
     """Test the url_block_pattern regular expression"""

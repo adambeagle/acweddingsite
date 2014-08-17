@@ -15,12 +15,6 @@ register = template.Library()
 def addwidgetcss(field, css):
    return field.as_widget(attrs={"class" : css})
 
-@register.filter(is_safe=True)
-@stringfilter
-def bullets(value):
-    """Alias to core.util.asterisks_to_ul; see documentation for original function."""
-    return util.asterisks_to_ul(value)
-
 @register.filter(is_safe=True, name='reverseurls')
 @stringfilter
 def reverse_urls(value):
