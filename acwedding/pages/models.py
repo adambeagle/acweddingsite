@@ -28,6 +28,9 @@ class Section(models.Model):
         if self.map is not None:
             self.page.has_map = True
             self.page.save()
+            
+    class Meta:
+        ordering = ['id']
 
 class SectionGallery(models.Model):
     section = models.OneToOneField(Section)
