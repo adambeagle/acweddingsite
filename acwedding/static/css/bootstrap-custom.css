@@ -186,6 +186,7 @@ h1 {
 .swap {
 	position: absolute;
 	top: 0;
+	left: 0;
 	border-radius: 30px;
 }
 

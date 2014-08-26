@@ -81,7 +81,7 @@
         var {{ poi.marker.name }}Marker = new google.maps.Marker({
             position: new google.maps.LatLng({{ poi.location.latitude }}, {{ poi.location.longitude }}),
             map: map,
-            title: "{{ poi.marker.full_name|safe }}",
+            title: "{{ poi.marker.location.full_name|safe }}",
             icon: "{% static 'images/map_icons/'|add:poi.marker.icon.filename %}"
         });
         

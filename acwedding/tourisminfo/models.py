@@ -34,6 +34,7 @@ class BasePointOfInterest(models.Model):
     
     class Meta:
         abstract = True
+        ordering = ['marker__location__full_name']
 
 class PointOfInterest(BasePointOfInterest):
     CATEGORY_CHOICES = (

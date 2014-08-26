@@ -10,7 +10,7 @@ class PointOfInterestAdmin(admin.ModelAdmin):
     inlines = (GenericLinkInline, )
     
 class AccommodationAdmin(PointOfInterestAdmin):
-    fields = ('marker', 'category', 'short_description', 'description',  
+    fields = ('marker', 'category', 'category2', 'short_description', 'description',  
         'amenities', 'review', 'image', 'highlight'
     )
     inlines = (GenericLinkInline, )

@@ -1,10 +1,18 @@
 {% extends 'tourisminfo/poi_detail.html' %}
 
+{% block breadcrumb %}
+    <ol class="breadcrumb">
+        <li><a href="/">Home</a></li>
+        <li><a href="{% url 'tourisminfo:accommodations_index' %}">Accommodations</a></li>
+        <li class="active">{{ poi.full_name }}</li>
+    </ol>
+{% endblock breadcrumb %}
+
 {% block extra_sections %}
     {% if poi.amenities %}
         <section>
             <h3>Amenities</h3>
-            {{ poi.amenities|safe|linebreaks }}
+            {{ poi.amenities|safe }}
         </section>
     {% endif %}
 {% endblock extra_sections %}
