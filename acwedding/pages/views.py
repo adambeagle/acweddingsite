@@ -9,7 +9,7 @@ from core.models import Image
 
 class ContactView(FormView):
     template_name = 'pages/contact.html'
-    success_url = reverse_lazy('core:contact_thanks')
+    success_url = reverse_lazy('pages:contact_thanks')
     form_class = ContactForm
     subheader_image = Image(
         full_path='/static/images/subheaders/stan.png',
