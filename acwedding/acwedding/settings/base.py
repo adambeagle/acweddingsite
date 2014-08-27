@@ -7,12 +7,24 @@ MEDIA_ROOT = BASE_DIR.child("media")
 STATICFILES_DIRS = (
     BASE_DIR.child("static"),
 )
+STATIC_ROOT = BASE_DIR.child('static', 'static_root')
 
 TEMPLATE_DIRS = (
     BASE_DIR.child("templates"),
 )
 
 SECRET_KEY = environ["SECRET_KEY"]
+
+DATABASES = {
+    'default': {
+        'ENGINE' : 'django.db.backends.postgresql_psycopg2',
+        'NAME' : 'acwedding',
+        'USER' : environ['DB_USERNAME'],
+        'PASSWORD' : environ['DB_PASSWORD'],
+        'HOST' : '',
+        'PORT' : '',
+    }
+}
 
 # Email settings
 EMAIL_HOST_USER = environ['EMAIL_HOST_USER']
