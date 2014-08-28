@@ -47,9 +47,7 @@ To create thumbnails of every image found in
 <repo root>/<PROJECT_NAME>/static/gallery and place them in 
 <repo root>/<PROJECT_NAME>/static/thumbnails,
 run 'python make_thumbnails.py gallery thumbnails' at the command line.
-
 """
-
 from os import listdir, path
 from re import match, IGNORECASE
 from sys import argv
