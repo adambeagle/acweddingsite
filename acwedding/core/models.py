@@ -83,6 +83,7 @@ class BaseLink(models.Model):
         
     class Meta:
         abstract = True
+        ordering = ['text']
 
 class SluggedModel(models.Model):
     full_name = models.CharField(max_length=128)

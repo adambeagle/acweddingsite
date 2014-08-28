@@ -34,7 +34,6 @@ class BasePointOfInterest(models.Model):
     
     class Meta:
         abstract = True
-        ordering = ['marker__location__full_name']
 
 class PointOfInterest(BasePointOfInterest):
     CATEGORY_CHOICES = (
@@ -46,6 +45,7 @@ class PointOfInterest(BasePointOfInterest):
     
     class Meta:
         verbose_name_plural = 'Points of interest'
+        ordering = ['marker__location__full_name']
     
 class Accommodation(BasePointOfInterest):
     CATEGORY_CHOICES = (
@@ -66,3 +66,6 @@ class Accommodation(BasePointOfInterest):
             raise ValidationError('Categories must be unique')
             
         return super().validate_unique(**kwargs)
+        
+    class Meta:
+        ordering = ['marker__location__full_name']
