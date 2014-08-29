@@ -3,6 +3,7 @@
 
 python manage.py dumpdata --indent=2 googlemaps > fixtures/googlemaps.json
 python manage.py dumpdata --indent=2 core > fixtures/core.json
+python manage.py dumpdata --indent=2 pages > fixtures/pages.json
 python manage.py dumpdata --indent=2 faq > fixtures/faq.json
 python manage.py dumpdata --indent=2 tourisminfo > fixtures/tourisminfo.json
 python manage.py dumpdata --indent=2 > fixtures/all.json
