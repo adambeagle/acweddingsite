@@ -7,7 +7,6 @@ MEDIA_ROOT = BASE_DIR.child("media")
 STATICFILES_DIRS = (
     BASE_DIR.child("static"),
 )
-STATIC_ROOT = BASE_DIR.child('static', 'static_root')
 
 TEMPLATE_DIRS = (
     BASE_DIR.child("templates"),
