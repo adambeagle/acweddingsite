@@ -60,6 +60,7 @@
 {% endblock %}
 
 {% block body_end %}   
+    {{ block.super }}
     {% if page.has_gallery %}
         <script src="{% static 'js/magnificpopup.min.js' %}" type="text/javascript"></script>
         <script type="text/javascript">

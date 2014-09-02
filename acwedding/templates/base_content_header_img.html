@@ -1,15 +1,37 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
+{% load core_tags %}
 
 {% comment %}NOTE this template expects a context variable named subheader_image, with attributes as in core.models.BaseImage{% endcomment %}
 
 {% block content_header %}
     {% if subheader_image %}
         <div class="subheader-img-wrapper center-block">
-                <img class="img-responsive center-block" src="{% static subheader_image.static_path %}" alt="{{ subheader_image.alt_text }}">
+                <picture alt="{{ subheader_image.alt_text }}">
+                    <source src="{% static subheader_image.static_path|filenamesuffix:'_xs' %}" class="img-responsive center-block">
+                    <source src="{% static subheader_image.static_path|filenamesuffix:'_s' %}" media="(min-width: 481)" class="img-responsive center-block">
+                    <source src="{% static subheader_image.static_path|filenamesuffix:'_m' %}" media="(min-width:769px)" class="img-responsive center-block">
+                    <source src="{% static subheader_image.static_path|filenamesuffix:'_l' %}" media="(min-width:993px)" class="img-responsive center-block">
+                    <source src="{% static subheader_image.static_path %}" media="(min-width:1201px)" class="img-responsive center-block">
+                    {% comment %}
+                    <noscript>
+                        <img src="{% static subheader_image.static_path %}" alt="{{ subheader_image.alt_text }}" class="center-block">
+                    </noscript>{% endcomment %}
+                </picture>
+        
                 {% if subheader_image.caption %}
                     <p class="text-center">{{ subheader_image.caption|safe }}</p>
                 {% endif %}
         </div>
     {% endif %}
 {% endblock content_header %}
+
+{% block body_end %}
+    {{ block.super }}
+    <script type="text/javascript" src="{% static 'js/jquery-picture-min.js' %}"></script>
+    <script type="text/javascript">
+        $(function(){
+            $('picture').picture();
+        });
+    </script>
+{% endblock body_end %}

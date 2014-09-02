@@ -36,3 +36,16 @@ def splitext(value):
     Return a filename sans extension. Alias to os.splitext. 
     """
     return pathsplitext(value)[0]
+    
+@register.filter(is_safe=True)
+@stringfilter
+def filenamesuffix(path, suffix):
+    """
+    Return path with 'suffix' appended to filename.
+    
+    Example:
+      Input:  '/path/to/file.ext', '_end'
+      Output: '/path.to/file_end.ext'
+    """
+    filename, ext = pathsplitext(path)
+    return filename + suffix + ext
