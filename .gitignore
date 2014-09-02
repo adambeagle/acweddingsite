@@ -1,4 +1,5 @@
 *.pyc
 *~
 acwedding/fixtures/*
+acwedding/logs/*
 staticfiles/*
