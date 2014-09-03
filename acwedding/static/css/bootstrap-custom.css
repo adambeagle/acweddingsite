@@ -79,14 +79,15 @@ a:hover {
 
 h1 {
 	font-family: waltograph;
-	margin-top: 0;
+	margin-bottom: 5px;
+    margin-top: 0;
 	text-shadow: 2px 2px #000;
 }
 
 .jumbotron h2 {
 	margin-top: 0;
 	font-family: pandf;
-	font-size: 20px;
+	font-size: 18px;
 	text-shadow: 2px 2px #000;
 }
 
@@ -97,6 +98,10 @@ h1 {
 }	
 
 @media (min-width: 769px) {
+	h1 {
+		margin-bottom: 10px;
+	}
+	
 	.jumbotron {
 		background-image: url('../images/ui/banner-992.png');
 	}
