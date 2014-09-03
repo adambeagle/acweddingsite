@@ -8,9 +8,9 @@ BREAKPOINTS_RES = [480, 768, 992, 1200]
 SUFFIXES = ['xs', 's', 'm', 'l']
 FORMATS = ['png', 'jpg', 'jpeg']
 PATTERN = r'.+\.(?:{0})$'.format('|'.join(FORMATS))
-DEFAULT_SHRINK_RATIO = 0.8
+SHRINK_RATIOS = (.8, .7, .6, .5)
 
-def optimize_image(srcpath, shrink_ratio):
+def optimize_image(srcpath):
     """ """
     srcpath = path.abspath(srcpath)
     dir = path.dirname(srcpath)
@@ -21,7 +21,7 @@ def optimize_image(srcpath, shrink_ratio):
     height_ratio = orig_h / orig_w
     
     breakpoints_w = tuple(zip(
-        [int(shrink_ratio*w) for w in BREAKPOINTS_RES],
+        [int(SHRINK_RATIOS[i]*w) for i, w in enumerate(BREAKPOINTS_RES)],
         SUFFIXES
     ))
     
@@ -54,9 +54,7 @@ if __name__ == '__main__':
             raise ArgumentsError()
     except:
         raise ArgumentsError('Usage: python make_banner.py <srcdir>')
-
-    shrink_ratio = float(argv[2]) if len(argv) > 2 else DEFAULT_SHRINK_RATIO
         
     for file in listdir(srcdir):
         if re.match(PATTERN, file, re.IGNORECASE):
-            optimize_image('{0}/{1}'.format(srcdir, file), shrink_ratio)
+            optimize_image('{0}/{1}'.format(srcdir, file))
