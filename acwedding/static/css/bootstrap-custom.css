@@ -67,6 +67,7 @@ a:hover {
 ===========
 */
 .jumbotron {
+	background-color: #011833;
 	background-image: url('../images/ui/banner-480.png');
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -86,7 +87,7 @@ h1 {
 
 .jumbotron h2 {
 	margin-top: 0;
-	font-family: pandf;
+	font-family: pandf, sans-serif;
 	font-size: 18px;
 	text-shadow: 2px 2px #000;
 }
@@ -230,7 +231,6 @@ h1 {
 }
 
 span:target {
-	color: #8CB766;
 	font-weight: bold;
 }
 
