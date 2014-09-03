@@ -51,3 +51,9 @@ class PointOfInterestIndexView(BasePointOfInterestIndexView):
 class PointOfInterestDetailView(BasePointOfInterestDetailView):
     model = PointOfInterest
     template_name = 'tourisminfo/poi_detail.html'
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['subheader_image'] = self.object.image
+        
+        return context

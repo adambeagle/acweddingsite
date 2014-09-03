@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base_content_header_img.html' %}
 {% load staticfiles %}
 {% load core_tags %}
 {% load googlemaps_tags %}
@@ -22,6 +22,7 @@
 {% endblock breadcrumb %}
 
 {% block content %}
+{% comment %}
     {% if poi.image %}
         <div class="subheader-img-wrapper">
                 <img src="{% static poi.image.static_path %}" class="img-responsive center-block">
@@ -30,6 +31,7 @@
                 {% endif %} 
         </div>
     {% endif %}
+{% endcomment %}
 
     <section>
         <h3>Description</h3>
