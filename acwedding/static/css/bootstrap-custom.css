@@ -148,11 +148,6 @@ h1 {
 .subheader-img-wrapper img{
 	max-width: 85%;
 	border-radius: 30px;
-	-webkit-transition: all 0,1s ease;
-	-moz-transition: all 0,1s ease;
-	-o-transition: all 0,1s ease;
-	-ms-transition: all 0,1s ease;
-	transition: all 0,1s ease;
 	max-height: 25em;
 	margin: auto;
 	display: block;
@@ -169,10 +164,6 @@ h1 {
 	max-height: 25em;
 }
  
-.subheader-img-wrapper img:hover {
-  -webkit-filter: drop-shadow(7px 4px 1px #ccc);
-}
-
 @media (max-width: 767px) {
 	.subheader-img-wrapper img{
 		max-width: 90%;
