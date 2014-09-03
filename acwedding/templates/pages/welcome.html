@@ -1,5 +1,6 @@
 {% extends 'base_content_header_img.html' %}
 {% load staticfiles %}
+{% load core_tags %}
 
  {% block full_page_title %}Beagle-Madill Wedding{% endblock full_page_title %}
  
@@ -7,9 +8,38 @@
  
  {% block content %}
     <div class="swap-image-wrapper center-block">
-        <img src="{% static 'images/subheaders/welcome1.jpg' %}">
-        <img src="{% static 'images/subheaders/welcome1.jpg' %}" class="swap">
-        <img src="{% static 'images/subheaders/welcome2.jpg' %}" class="swap swapper">
+    
+        <picture alt="Welcome photo">
+            <source src="{% static 'images/subheaders/welcome2.jpg'|filenamesuffix:'_xs' %}">
+            <source src="{% static 'images/subheaders/welcome2.jpg'|filenamesuffix:'_s' %}" media="(min-width: 481)">
+            <source src="{% static 'images/subheaders/welcome2.jpg'|filenamesuffix:'_m' %}" media="(min-width:769px)">
+            <source src="{% static 'images/subheaders/welcome2.jpg'|filenamesuffix:'_l' %}" media="(min-width:993px)">
+            <source src="{% static 'images/subheaders/welcome2.jpg' %}" media="(min-width:1201px)" class="img-responsive center-block">
+            <noscript>
+                <img src="{% static 'images/subheaders/welcome2.jpg' %}" alt="Welcome photo" class="center-block">
+            </noscript>
+        </picture>
+        <picture alt="Welcome photo">
+            <source src="{% static 'images/subheaders/welcome1.jpg'|filenamesuffix:'_xs' %}">
+            <source src="{% static 'images/subheaders/welcome1.jpg'|filenamesuffix:'_s' %}" media="(min-width: 481)">
+            <source src="{% static 'images/subheaders/welcome1.jpg'|filenamesuffix:'_m' %}" media="(min-width:769px)">
+            <source src="{% static 'images/subheaders/welcome1.jpg'|filenamesuffix:'_l' %}" media="(min-width:993px)">
+            <source src="{% static 'images/subheaders/welcome1.jpg' %}" media="(min-width:1201px)" class="img-responsive center-block">
+            <noscript>
+                <img src="{% static 'images/subheaders/welcome1.jpg' %}" alt="Welcome photo" class="center-block">
+            </noscript>
+        </picture>
+        <picture alt="Welcome photo">
+            <source src="{% static 'images/subheaders/welcome2.jpg'|filenamesuffix:'_xs' %}">
+            <source src="{% static 'images/subheaders/welcome2.jpg'|filenamesuffix:'_s' %}" media="(min-width: 481)">
+            <source src="{% static 'images/subheaders/welcome2.jpg'|filenamesuffix:'_m' %}" media="(min-width:769px)">
+            <source src="{% static 'images/subheaders/welcome2.jpg'|filenamesuffix:'_l' %}" media="(min-width:993px)">
+            <source src="{% static 'images/subheaders/welcome2.jpg' %}" media="(min-width:1201px)" class="img-responsive center-block">
+            <noscript>
+                <img src="{% static 'images/subheaders/welcome2.jpg' %}" alt="Welcome photo" class="center-block">
+            </noscript>
+        </picture>
+
         <p class="text-center">Marriage would be nice, yes?</p>
     </div>
     
@@ -22,12 +52,15 @@
  {% endblock content %}
  
  {% block body_end %}
+    {{ block.super }}
    <script type="text/javascript">
         function toggleSwapper() {
             $('.swap').fadeToggle(1000);
         }
         
         $(document).ready(function() {
+            $('.swap-image-wrapper picture:nth-child(2) img').addClass('swap')
+            $('.swap-image-wrapper picture:nth-child(3) img').addClass('swapper swap')
             setInterval(toggleSwapper, 5000);
         });
     </script>
