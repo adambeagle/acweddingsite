@@ -47,7 +47,7 @@ def make_banner_sizes(srcfile):
                 dir, 
                 '{0}-{1}{2}'.format(base_filename, w, ext)
             )
-            resized_image.save(resized_image_path)
+            resized_image.save(resized_image_path, optimize=True)
             print('Image {0} saved.'.format(resized_image_path))
     
 if __name__ == '__main__':
