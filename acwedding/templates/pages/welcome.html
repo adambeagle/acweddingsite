@@ -8,38 +8,33 @@
  
  {% block content %}
     <div class="swap-image-wrapper center-block">
-    
-        <picture alt="Welcome photo">
-            <source src="{% static 'images/subheaders/welcome2.jpg'|filenamesuffix:'_xs' %}">
-            <source src="{% static 'images/subheaders/welcome2.jpg'|filenamesuffix:'_s' %}" media="(min-width: 481)">
-            <source src="{% static 'images/subheaders/welcome2.jpg'|filenamesuffix:'_m' %}" media="(min-width:769px)">
-            <source src="{% static 'images/subheaders/welcome2.jpg'|filenamesuffix:'_l' %}" media="(min-width:993px)">
-            <source src="{% static 'images/subheaders/welcome2.jpg' %}" media="(min-width:1201px)">
-            <noscript>
-                <img src="{% static 'images/subheaders/welcome2.jpg' %}" alt="Welcome photo" class="center-block">
-            </noscript>
+        <picture alt="{{ subheader_image.alt_text }}">
+            <!--[if IE 9]><video style="display: none;"><![endif]-->
+            <source srcset="{% static 'images/subheaders/welcome2.jpg' %}" media="(min-width:1201px)">
+            <source srcset="{% static 'images/subheaders/welcome2.jpg' |filenamesuffix:'_l' %}" media="(min-width:993px)">
+            <source srcset="{% static 'images/subheaders/welcome2.jpg' |filenamesuffix:'_m' %}" media="(min-width:769px)">
+            <source srcset="{% static 'images/subheaders/welcome2.jpg' |filenamesuffix:'_s' %}" media="(min-width: 481)">
+            <!--[if IE 9]></video><![endif]-->
+            <img srcset="{% static 'images/subheaders/welcome2.jpg' |filenamesuffix:'_xs' %}">
         </picture>
-        <picture alt="Welcome photo">
-            <source src="{% static 'images/subheaders/welcome1.jpg'|filenamesuffix:'_xs' %}">
-            <source src="{% static 'images/subheaders/welcome1.jpg'|filenamesuffix:'_s' %}" media="(min-width: 481)">
-            <source src="{% static 'images/subheaders/welcome1.jpg'|filenamesuffix:'_m' %}" media="(min-width:769px)">
-            <source src="{% static 'images/subheaders/welcome1.jpg'|filenamesuffix:'_l' %}" media="(min-width:993px)">
-            <source src="{% static 'images/subheaders/welcome1.jpg' %}" media="(min-width:1201px)">
-            <noscript>
-                <img src="{% static 'images/subheaders/welcome1.jpg' %}" alt="Welcome photo" class="center-block">
-            </noscript>
+        <picture alt="{{ subheader_image.alt_text }}">
+            <!--[if IE 9]><video style="display: none;"><![endif]-->
+            <source srcset="{% static 'images/subheaders/welcome1.jpg' %}" media="(min-width:1201px)">
+            <source srcset="{% static 'images/subheaders/welcome1.jpg' |filenamesuffix:'_l' %}" media="(min-width:993px)">
+            <source srcset="{% static 'images/subheaders/welcome1.jpg' |filenamesuffix:'_m' %}" media="(min-width:769px)">
+            <source srcset="{% static 'images/subheaders/welcome1.jpg' |filenamesuffix:'_s' %}" media="(min-width: 481)">
+            <!--[if IE 9]></video><![endif]-->
+            <img srcset="{% static 'images/subheaders/welcome1.jpg' |filenamesuffix:'_xs' %}">
         </picture>
-        <picture alt="Welcome photo">
-            <source src="{% static 'images/subheaders/welcome2.jpg'|filenamesuffix:'_xs' %}">
-            <source src="{% static 'images/subheaders/welcome2.jpg'|filenamesuffix:'_s' %}" media="(min-width: 481)">
-            <source src="{% static 'images/subheaders/welcome2.jpg'|filenamesuffix:'_m' %}" media="(min-width:769px)">
-            <source src="{% static 'images/subheaders/welcome2.jpg'|filenamesuffix:'_l' %}" media="(min-width:993px)">
-            <source src="{% static 'images/subheaders/welcome2.jpg' %}" media="(min-width:1201px)">
-            <noscript>
-                <img src="{% static 'images/subheaders/welcome2.jpg' %}" alt="Welcome photo" class="center-block">
-            </noscript>
+        <picture alt="{{ subheader_image.alt_text }}">
+            <!--[if IE 9]><video style="display: none;"><![endif]-->
+            <source srcset="{% static 'images/subheaders/welcome2.jpg' %}" media="(min-width:1201px)">
+            <source srcset="{% static 'images/subheaders/welcome2.jpg' |filenamesuffix:'_l' %}" media="(min-width:993px)">
+            <source srcset="{% static 'images/subheaders/welcome2.jpg' |filenamesuffix:'_m' %}" media="(min-width:769px)">
+            <source srcset="{% static 'images/subheaders/welcome2.jpg' |filenamesuffix:'_s' %}" media="(min-width: 481)">
+            <!--[if IE 9]></video><![endif]-->
+            <img srcset="{% static 'images/subheaders/welcome2.jpg' |filenamesuffix:'_xs' %}">
         </picture>
-
         <p class="text-center">Marriage would be nice, yes?</p>
     </div>
     

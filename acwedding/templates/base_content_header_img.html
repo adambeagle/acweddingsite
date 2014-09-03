@@ -4,19 +4,21 @@
 
 {% comment %}NOTE this template expects a context variable named subheader_image, with attributes as in core.models.BaseImage{% endcomment %}
 
+{% block extra_js %}
+    <script src="{% static 'js/picturefill.min.js' %}"></script>
+{% endblock extra_js %}
+
 {% block content_header %}
     {% if subheader_image %}
         <div class="subheader-img-wrapper center-block">
                 <picture alt="{{ subheader_image.alt_text }}">
-                    <source src="{% static subheader_image.static_path|filenamesuffix:'_xs' %}">
-                    <source src="{% static subheader_image.static_path|filenamesuffix:'_s' %}" media="(min-width: 481)">
-                    <source src="{% static subheader_image.static_path|filenamesuffix:'_m' %}" media="(min-width:769px)">
-                    <source src="{% static subheader_image.static_path|filenamesuffix:'_l' %}" media="(min-width:993px)">
-                    <source src="{% static subheader_image.static_path %}" media="(min-width:1201px)">
-                    {% comment %}
-                    <noscript>
-                        <img src="{% static subheader_image.static_path %}" alt="{{ subheader_image.alt_text }}" class="center-block">
-                    </noscript>{% endcomment %}
+                    <!--[if IE 9]><video style="display: none;"><![endif]-->
+                    <source srcset="{% static subheader_image.static_path %}" media="(min-width:1201px)">
+                    <source srcset="{% static subheader_image.static_path|filenamesuffix:'_l' %}" media="(min-width:993px)">
+                    <source srcset="{% static subheader_image.static_path|filenamesuffix:'_m' %}" media="(min-width:769px)">
+                    <source srcset="{% static subheader_image.static_path|filenamesuffix:'_s' %}" media="(min-width: 481)">
+                    <!--[if IE 9]></video><![endif]-->
+                    <img srcset="{% static subheader_image.static_path|filenamesuffix:'_xs' %}">
                 </picture>
         
                 {% if subheader_image.caption %}
@@ -25,13 +27,3 @@
         </div>
     {% endif %}
 {% endblock content_header %}
-
-{% block body_end %}
-    {{ block.super }}
-    <script type="text/javascript" src="{% static 'js/jquery-picture-min.js' %}"></script>
-    <script type="text/javascript">
-        $(function(){
-            $('picture').picture();
-        });
-    </script>
-{% endblock body_end %}
