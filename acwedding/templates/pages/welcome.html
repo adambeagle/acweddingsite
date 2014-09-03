@@ -14,7 +14,7 @@
             <source src="{% static 'images/subheaders/welcome2.jpg'|filenamesuffix:'_s' %}" media="(min-width: 481)">
             <source src="{% static 'images/subheaders/welcome2.jpg'|filenamesuffix:'_m' %}" media="(min-width:769px)">
             <source src="{% static 'images/subheaders/welcome2.jpg'|filenamesuffix:'_l' %}" media="(min-width:993px)">
-            <source src="{% static 'images/subheaders/welcome2.jpg' %}" media="(min-width:1201px)" class="img-responsive center-block">
+            <source src="{% static 'images/subheaders/welcome2.jpg' %}" media="(min-width:1201px)">
             <noscript>
                 <img src="{% static 'images/subheaders/welcome2.jpg' %}" alt="Welcome photo" class="center-block">
             </noscript>
@@ -24,7 +24,7 @@
             <source src="{% static 'images/subheaders/welcome1.jpg'|filenamesuffix:'_s' %}" media="(min-width: 481)">
             <source src="{% static 'images/subheaders/welcome1.jpg'|filenamesuffix:'_m' %}" media="(min-width:769px)">
             <source src="{% static 'images/subheaders/welcome1.jpg'|filenamesuffix:'_l' %}" media="(min-width:993px)">
-            <source src="{% static 'images/subheaders/welcome1.jpg' %}" media="(min-width:1201px)" class="img-responsive center-block">
+            <source src="{% static 'images/subheaders/welcome1.jpg' %}" media="(min-width:1201px)">
             <noscript>
                 <img src="{% static 'images/subheaders/welcome1.jpg' %}" alt="Welcome photo" class="center-block">
             </noscript>
@@ -34,7 +34,7 @@
             <source src="{% static 'images/subheaders/welcome2.jpg'|filenamesuffix:'_s' %}" media="(min-width: 481)">
             <source src="{% static 'images/subheaders/welcome2.jpg'|filenamesuffix:'_m' %}" media="(min-width:769px)">
             <source src="{% static 'images/subheaders/welcome2.jpg'|filenamesuffix:'_l' %}" media="(min-width:993px)">
-            <source src="{% static 'images/subheaders/welcome2.jpg' %}" media="(min-width:1201px)" class="img-responsive center-block">
+            <source src="{% static 'images/subheaders/welcome2.jpg' %}" media="(min-width:1201px)">
             <noscript>
                 <img src="{% static 'images/subheaders/welcome2.jpg' %}" alt="Welcome photo" class="center-block">
             </noscript>
@@ -59,8 +59,9 @@
         }
         
         $(document).ready(function() {
-            $('.swap-image-wrapper picture:nth-child(2) img').addClass('swap')
-            $('.swap-image-wrapper picture:nth-child(3) img').addClass('swapper swap')
+            $('.swap-image-wrapper picture:nth-child(2) img').addClass('swap');
+            $('.swap-image-wrapper picture:nth-child(3) img').addClass('swapper swap');
+            $('.swapper').css("opacity", "0%");
             setInterval(toggleSwapper, 5000);
         });
     </script>

@@ -194,7 +194,7 @@ h1 {
 
 .swapper {
 	/* WARNING Percent unit is necessary, or jQuery's fadeToggle will not work */
-	opacity: 0%; 
+	/*opacity: 0%; */
 	display: none;
 }
 

@@ -7,11 +7,11 @@
 
 {% block extra_css %}
     {% if page.has_map %}
-        <link rel="stylesheet" type="text/css" href="{% static 'css/gmap.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/gmap.min.css' %}">
     {% endif %}
     
     {% if page.has_gallery %}
-        <link rel="stylesheet" type="text/css" href="{% static 'css/magnific-popup.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/magnific-popup.min.css' %}">
     {% endif %}
 {% endblock extra_css %}
 

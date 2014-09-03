@@ -8,11 +8,11 @@
     {% if subheader_image %}
         <div class="subheader-img-wrapper center-block">
                 <picture alt="{{ subheader_image.alt_text }}">
-                    <source src="{% static subheader_image.static_path|filenamesuffix:'_xs' %}" class="img-responsive center-block">
-                    <source src="{% static subheader_image.static_path|filenamesuffix:'_s' %}" media="(min-width: 481)" class="img-responsive center-block">
-                    <source src="{% static subheader_image.static_path|filenamesuffix:'_m' %}" media="(min-width:769px)" class="img-responsive center-block">
-                    <source src="{% static subheader_image.static_path|filenamesuffix:'_l' %}" media="(min-width:993px)" class="img-responsive center-block">
-                    <source src="{% static subheader_image.static_path %}" media="(min-width:1201px)" class="img-responsive center-block">
+                    <source src="{% static subheader_image.static_path|filenamesuffix:'_xs' %}">
+                    <source src="{% static subheader_image.static_path|filenamesuffix:'_s' %}" media="(min-width: 481)">
+                    <source src="{% static subheader_image.static_path|filenamesuffix:'_m' %}" media="(min-width:769px)">
+                    <source src="{% static subheader_image.static_path|filenamesuffix:'_l' %}" media="(min-width:993px)">
+                    <source src="{% static subheader_image.static_path %}" media="(min-width:1201px)">
                     {% comment %}
                     <noscript>
                         <img src="{% static subheader_image.static_path %}" alt="{{ subheader_image.alt_text }}" class="center-block">

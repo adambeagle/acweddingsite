@@ -1,0 +1,3 @@
+curl -X POST -s --data-urlencode 'input@static/css/bootstrap-custom.css' http://cssminifier.com/raw > static/css/bootstrap-custom.min.css
+curl -X POST -s --data-urlencode 'input@static/css/magnific-popup.css' http://cssminifier.com/raw > static/css/magnific-popup.min.css
+curl -X POST -s --data-urlencode 'input@static/css/gmap.css' http://cssminifier.com/raw > static/css/gmap.min.css
