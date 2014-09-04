@@ -5,7 +5,7 @@
 {% comment %}NOTE this template expects a context variable named subheader_image, with attributes as in core.models.BaseImage{% endcomment %}
 
 {% block extra_js %}
-    <script src="{% static 'js/picturefill.min.js' %}"></script>
+    <script src="{% static 'js/picturefill.min.js' %}" async></script>
 {% endblock extra_js %}
 
 {% block content_header %}
