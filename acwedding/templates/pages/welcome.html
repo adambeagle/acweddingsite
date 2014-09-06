@@ -44,6 +44,13 @@
         <p>If you run into any problems using this site, or you suspect something doesn't look or work as intended, Adam would greatly appreciate it if you would <a href="{% url 'pages:contact' %}">let him know.</a></p>
         <p>A good place to start is the <a href="{% url 'faq:index' %}">FAQ</a> page!</p>
     </section>
+
+    <!--[if lte IE 9]>
+    <section>
+	<h3>Browser Warning</h3>
+	<p>You appear to be visiting the site from an old version of Internet Expolorer. As a result you may experience display or compatibility problems with this site. To view the site as intended, please consider <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">upgrading to a more recent version of Internet Explorer</a> or trying a <a href="https://www.google.com/chrome/browser/">different browser.</a></p>
+    </section>
+    <![endif]-->
  {% endblock content %}
  
  {% block body_end %}

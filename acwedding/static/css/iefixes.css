@@ -5,3 +5,8 @@ li.dropdown.open.active>.dropdown-toggle,
     filter:none;
     background-image: none;
 }
+
+p, table, footer, .panel-body, .breadcrumb, section a, section li, form, label {
+	font-size: 14px !important;
+}
+
