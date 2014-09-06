@@ -51,9 +51,8 @@ class Accommodation(BasePointOfInterest):
     CATEGORY_CHOICES = (
         ('hotel', 'Hotels'),
         ('motel', 'Motels'),
-        ('cabin', 'Cabins / Cottages'),
         ('bandb', 'Bed and Breakfast'),
-        ('campground', 'Campgrounds / RV Parks'),
+        ('cabin', 'Cabins / Cottages / Campgrounds / RV Parks'),
     )
     category = models.CharField(max_length=16, choices=CATEGORY_CHOICES)
     category2 = models.CharField(max_length=16, choices=CATEGORY_CHOICES, 
