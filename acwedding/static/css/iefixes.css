@@ -1,0 +1,7 @@
+.navbar .nav li.dropdown.open>.dropdown-toggle, .navbar .nav
+li.dropdown.active>.dropdown-toggle, .navbar .nav    
+li.dropdown.open.active>.dropdown-toggle,
+.navbar, .navbar .navbar-inner {
+    filter:none;
+    background-image: none;
+}
