@@ -22,17 +22,6 @@
 {% endblock breadcrumb %}
 
 {% block content %}
-{% comment %}
-    {% if poi.image %}
-        <div class="subheader-img-wrapper">
-                <img src="{% static poi.image.static_path %}" class="img-responsive center-block">
-                {% if poi.image.caption %}
-                    <p class="text-center">{{ poi.image.caption }}</p>
-                {% endif %} 
-        </div>
-    {% endif %}
-{% endcomment %}
-
     <section>
         <h3>Description</h3>
         {{ poi.description|safe|linebreaks }}
@@ -50,7 +39,7 @@
     <section>
         <h3>External Links</h3>
         {% for link in poi.external_links.all %}
-            <a href="{{ link.url }}" title="{{ link.title }}">{{ link.text }}</a><br>
+            <a href="{{ link.url }}" title="{{ link.title }}" target="_blank">{{ link.text }}</a><br>
         {% endfor %}
     </section>
 

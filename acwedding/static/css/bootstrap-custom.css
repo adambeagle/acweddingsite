@@ -225,6 +225,10 @@ span:target {
 	font-weight: bold;
 }
 
+section ul li {
+	margin-top: 10px;
+}
+
 /* 
 ===========
        FOOTER
