@@ -221,8 +221,8 @@ h1 {
 	border: 0 !important;
 }
 
-span:target {
-	font-weight: bold;
+section div:target {
+	background-color: #fcf8e3;
 }
 
 section ul li {
