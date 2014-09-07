@@ -36,6 +36,8 @@
 {% block body_end %}
     <script type="text/javascript">
         $(document).ready(function() {
+            $(':checkbox').prop('checked', true);
+
             $(':checkbox').change(function() {
                 $('.'+this.name).slideToggle(300);
             });
