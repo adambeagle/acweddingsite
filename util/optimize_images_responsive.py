@@ -49,12 +49,21 @@ def optimize_image(srcpath):
 ##############################################################################
 if __name__ == '__main__':
     try:
-        srcdir = path.abspath(argv[1])
-        if not path.isdir(srcdir):
-            raise ArgumentsError()
-    except:
-        raise ArgumentsError('Usage: python make_banner.py <srcdir>')
+        src = path.abspath(argv[1])
+    except IndexError:
+        raise ArgumentsError('Usage: python make_banner.py <src>')
         
-    for file in listdir(srcdir):
-        if re.match(PATTERN, file, re.IGNORECASE):
-            optimize_image('{0}/{1}'.format(srcdir, file))
+    if not path.exists(src):
+        raise ArgumentsError(
+            "Error: {0} is not a valid path".format(src)
+        )
+    
+    # If directory, optimize every image in directory
+    if path.isdir(src):
+        for file in listdir(src):
+            if re.match(PATTERN, file, re.IGNORECASE):
+                optimize_image('{0}/{1}'.format(src, file))
+                
+    # If file, optimize only file
+    elif path.isfile(src):
+        optimize_image(src)
