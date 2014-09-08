@@ -1,11 +1,49 @@
 """
+make_thumbnails.py
+Author: Adam Beagle
+
 NOTE: This file requires PIL/Pillow, which is not part of the acwedding_project
 requirements. See docs/installation.rst.
 
-PURPOSE:
+PURPOSE
+=======
+  This module automates the creation of thumbnails.
+  Thumbnails are ugly-cropped to fit a square.
+  
+USAGE
+=====
+  python make_thumbnails.py <src> <destdir>
 
-This module was written to automate the creation of thumbnails.
+  Two path arguments must be provided, 'src' and 'destdir.'
+  
+  If 'src' is a directory path, thumbnils of all image files within the 
+  directory (non-recursive) will be placed in 'destdir.'
+  
+  If 'src' is a file path, its thumbnail will be placed in 'destdir.'
+  
+  The thumbnail files are the original filename, with extension,
+  with ".thumbnail" appended. 
 
+EXAMPLE
+=======
+  Assuming the following directory structure:
+    make_thumbnails.py
+    images/
+      image1.png
+      image2.jpg
+    thumbnails/
+    
+  After running the following command...
+    python make_thumbnails.py images thumbnails
+  ...the directory structure would be the following:
+  
+  make_thumbnails.py
+  images/
+    image1.png
+    image2.jpg
+  thumbnails/
+    image1.png.thumbnail
+    image2.jpg.thumbnail
 """
 from os import listdir, path
 from re import match, IGNORECASE
@@ -13,42 +51,39 @@ from sys import argv
 
 from PIL import Image, ImageOps
 
-MAX_SIZE = (100, 100)
-FORMATS = ('png', 'jpg', 'jpeg') # Case-insensitve
+from imageutil import iter_image_paths
 
 class ArgumentsError(Exception):
     pass
-
+    
 class DirectoryDoesNotExistError(Exception):
     pass
 
-def make_thumbnails(srcdir, destdir):
-    pattern = '.+\.(?:{0})$'.format('|'.join(FORMATS))
-    
-    for f in listdir(srcdir):
-        if match(pattern, f, IGNORECASE):
-            image = Image.open(path.join(srcdir, f))
-            image = ImageOps.fit(image, MAX_SIZE, Image.ANTIALIAS)
-            
-            destfile = path.join(destdir, f + '.thumbnail')
-            image.save(destfile, 'png')
-            print('Thumbnail for {0} saved to {1}'.format(f, destfile))
-            
+MAX_SIZE = (100, 100)
 
+def make_thumbnail(srcpath, destdir, max_size=MAX_SIZE):
+    """
+    Saves a thumbnail of image pointed to by 'srcpath' in 'destdir.'
+    MAX_SIZE expects length 2 container (width, height)
+    """
+    image = Image.open(srcpath)
+    image = ImageOps.fit(image, MAX_SIZE, Image.ANTIALIAS)
+    
+    destpath = path.join(destdir, path.basename(srcpath)  + '.thumbnail')
+    image.save(destpath, 'png')
+    print('Thumbnail for {0} saved to {1}'.format(srcpath, destpath))
+
+##############################################################################
 if __name__ == '__main__':
-    # Get names of source and destination directories from argv and 
-    # append them to absolute path of project's static/images/.
-    if len(argv) > 1:
-        try:
-            srcdir, destdir = argv[1:]
-        except ValueError:
-            raise ArgumentsError('Usage: python make_thumbnails.py' +
-                ' <srcdir> <destdir>')
+    try:
+        src, destdir = argv[1:3]
+    except ValueError:
+        raise ArgumentsError('Usage: python make_thumbnails.py' +
+            ' <src> <destdir>')
+    
+    destdir = path.abspath(destdir)
+    if not path.isdir(destdir):
+        raise DirectoryDoesNotExistError(destdir)
         
-        if not path.isdir(srcdir):
-            raise DirectoryDoesNotExistError(srcdir)
-            
-        if not path.isdir(destdir):
-            raise DirectoryDoesNotExistError(destdir)
-        
-    make_thumbnails(path.abspath(srcdir), path.abspath(destdir))
+    for imgpath in iter_image_paths(src):
+        make_thumbnail(imgpath, destdir)
