@@ -47,14 +47,11 @@ EXAMPLE
 """
 from os import listdir, path
 from re import match, IGNORECASE
-from sys import argv
+from sys import argv, exit
 
 from PIL import Image, ImageOps
 
 from imageutil import iter_image_paths
-
-class ArgumentsError(Exception):
-    pass
     
 class DirectoryDoesNotExistError(Exception):
     pass
@@ -78,8 +75,7 @@ if __name__ == '__main__':
     try:
         src, destdir = argv[1:3]
     except ValueError:
-        raise ArgumentsError('Usage: python make_thumbnails.py' +
-            ' <src> <destdir>')
+        exit('Usage: python[3] {0} <src> <destdir>'.format(__file__))
     
     destdir = path.abspath(destdir)
     if not path.isdir(destdir):

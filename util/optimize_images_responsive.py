@@ -60,7 +60,7 @@ Assuming the following directory structure:
     image2_xs.jpg   (width 240px)
 """
 from os import path, symlink
-from sys import argv
+from sys import argv, exit
 
 from PIL import Image
 
@@ -70,10 +70,20 @@ BREAKPOINTS_RES = [480, 768, 992, 1200]
 SUFFIXES = ['xs', 's', 'm', 'l']
 SHRINK_RATIOS = (.8, .7, .6, .5)
 
-def optimize_image(srcpath):
-    """ """
+def optimize_image(srcpath, extension='', **kwargs):
+    """
+    If 'ext' is empty or None, original srcpath extension will be retained, . 
+    If given, all new images will be saved with extension 'ext.'
+    For either case, default PIL behavior on save (determine format from 
+    filename) applies.
+    
+    Any given kwargs are passed to PIL.Image.save().
+    Note that optimize=True is already set in this function.
+    """
     dir = path.dirname(srcpath)
     base_filename, ext = path.splitext(path.basename(srcpath))
+    if extension:
+        ext = '{0}{1}'.format('.' if extension[0] != '.' else '', extension)
     
     image = Image.open(srcpath)
     orig_w, orig_h = image.size
@@ -94,7 +104,7 @@ def optimize_image(srcpath):
             resized_image = image.resize(
                 (w, int(height_ratio*w)), Image.ANTIALIAS
             )
-            resized_image.save(resized_image_path, optimize=True)
+            resized_image.save(resized_image_path, optimize=True, **kwargs)
             print('Image {0} saved.'.format(resized_image_path))
             
         # If new image width > source image, create symlink to source
@@ -103,8 +113,9 @@ def optimize_image(srcpath):
             print('Created symlink: {0} -> {1}'.format(
                 resized_image_path, srcpath
             ))
-            
-    image.save(srcpath, optimize=True)
+    
+    # Save the final (source) image
+    image.save('{0}{1}'.format(base_filename, ext), optimize=True, **kwargs)
     print('Original image {0} optimized and saved.'.format(srcpath))
 
 ##############################################################################
@@ -112,7 +123,7 @@ if __name__ == '__main__':
     try:
         src = path.abspath(argv[1])
     except IndexError:
-        raise ArgumentsError('Usage: python make_banner.py <src>')
+        exit('Usage: python[3] {0} <src>'.format(__file__))
     
     for imgpath in iter_image_paths(src):
         optimize_image(imgpath)
