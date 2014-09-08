@@ -68,7 +68,7 @@ a:hover {
 */
 .jumbotron {
 	background-color: #011833;
-	background-image: url('../images/ui/banner-480.png');
+	background-image: url('../images/ui/banner_480.jpg');
 	background-repeat: no-repeat;
 	background-size: cover;
 	margin-bottom: 0;
@@ -94,7 +94,7 @@ h1 {
 
 @media (min-width: 481px) {
 	.jumbotron {
-		background-image: url('../images/ui/banner-768.png');
+		background-image: url('../images/ui/banner_768.jpg');
 	}
 }	
 
@@ -104,7 +104,7 @@ h1 {
 	}
 	
 	.jumbotron {
-		background-image: url('../images/ui/banner-992.png');
+		background-image: url('../images/ui/banner_992.jpg');
 	}
 	
 	.jumbotron h2 {
@@ -115,13 +115,13 @@ h1 {
 
 @media (min-width: 993px) {
 	.jumbotron {
-		background-image: url('../images/ui/banner-1200.png');
+		background-image: url('../images/ui/banner_1200.jpg');
 	}
 }	
 
 @media (min-width: 1201px) {
 	.jumbotron {
-		background-image: url('../images/ui/banner.png');
+		background-image: url('../images/ui/banner.jpg');
 	}
 }	
 
@@ -131,7 +131,7 @@ h1 {
   only screen and (     -o-min-device-pixel-ratio: 2/1),
   only screen and (        min-device-pixel-ratio: 2) {
 	  .jumbotron {
-		  background-image: url('../images/ui/banner.png');
+		  background-image: url('../images/ui/banner.jpg');
 	  }
 }
 
@@ -281,6 +281,6 @@ footer {
 		(min-resolution: 144dpi),
 		(min-resolution: 1.5dppx) {
 	.jumbotron {
-		background-image: url('../images/ui/banner.png');
+		background-image: url('../images/ui/banner.jpg');
 	}
 }
