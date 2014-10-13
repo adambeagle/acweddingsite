@@ -1,3 +1,32 @@
-INET="$(ifconfig eth0 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}')"
+#!/bin/bash
+# Starts Django development server at address visible to LAN.
+# Runserver will print this address when it starts.
+# If using VM, may have to bridge connection for this to work.
+#
+# Default port is 8000; a different port can be specified with the -p option.
+
+usage() {
+    echo "Usage: $0 [-p port]" >&2
+    exit 1
+}
+
 PORT=8000
-python manage.py runserver $INET:$PORT $@
+
+while getopts ":p:" opt; do
+    case $opt in
+        p|P)
+            PORT="$OPTARG"
+            ;;
+        \?)
+            echo "Invalid option: -$OPTARG" >&2
+            usage
+            ;;
+        :)
+            echo "Option -$OPTARG requires an argument." >&2
+            usage
+            ;;
+    esac
+done
+
+INET="$(ifconfig eth0 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}')"
+python manage.py runserver "$INET":"$PORT"

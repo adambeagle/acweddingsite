@@ -1,3 +1,18 @@
-curl -X POST -s --data-urlencode 'input@static/css/bootstrap-custom.css' http://cssminifier.com/raw > static/css/bootstrap-custom.min.css
-curl -X POST -s --data-urlencode 'input@static/css/magnific-popup.css' http://cssminifier.com/raw > static/css/magnific-popup.min.css
-curl -X POST -s --data-urlencode 'input@static/css/gmap.css' http://cssminifier.com/raw > static/css/gmap.min.css
+#!/bin/bash
+# Uses cssminifier.com service to minify specified .css files.
+#
+# Instructions: 
+#   1) Set PATH to path to .css files from this file
+#   2) Add filenames of desired .css files, omitting path and extension, to FILES
+
+PATH="static/css"
+FILES=(bootstrap-custom) # Omit extensions
+
+for css_file in ${FILES[*]}; do
+    COMBINED=$PATH/""$css_file""
+    if [ ! -f "$COMBINED".css ]; then
+        echo "File not found - $CONBINED" >&2
+    else
+        /usr/bin/curl -X POST -s --data-urlencode "input@""$COMBINED"".css" http://cssminifier.com/raw > "$COMBINED".min.css
+    fi
+done
