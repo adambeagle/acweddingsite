@@ -1,0 +1,43 @@
+#!/bin/bash
+# Handles dumping and loading of fixtures.
+# Place in directory of manage.py
+#
+# Instructions:
+#   1) Place project app names in APPS below
+#   2) Alter FIXTURES_PATH if desired.
+#
+# Individual app's fixtures are dumped so order of load may be controlled.
+# All project fixtures also dumped to all.json in FIXTURES_PATH
+
+
+# Note order of apps may be important.
+# Load occurs in order given here.
+APPS=(core googlemaps tourisminfo faq pages)
+FIXTURES_PATH="fixtures"
+
+# Create directory given by FIXTURES_PATH if it does not exist.
+if [ ! -d "$FIXTURES_PATH" ]; then
+    /bin/mkdir -p "$FIXTURES_PATH"
+fi
+
+case "$1" in
+    # If load, load all fixtures
+    load)
+        for app in ${APPS[*]}; do
+            python manage.py loaddata ""$FIXTURES_PATH""/""$app"".json
+        done
+        ;;
+    
+    # If dump, dump individual app fixtures, and all to all.json
+    dump)
+        for app in ${APPS[*]}; do
+            python manage.py dumpdata --indent=2 $app > ""$FIXTURES_PATH""/""$app"".json
+        done
+        python manage.py dumpdata --indent=2 > ""$FIXTURES_PATH""/all.json
+        ;;
+    
+    # If missing or other command, print usage
+    *)
+        echo "Usage: $0 command" >&2
+        echo "Available commands: load dump" >&2
+esac
