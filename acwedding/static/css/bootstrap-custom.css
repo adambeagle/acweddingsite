@@ -229,6 +229,12 @@ section ul li {
 	margin-top: 10px;
 }
 
+@media (max-width: 992px) {
+	#content-col {
+		padding-top: 10px;
+	}	
+}
+
 /* 
 ===========
        FOOTER
