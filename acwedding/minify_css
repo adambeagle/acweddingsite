@@ -11,7 +11,7 @@ FILES=(bootstrap-custom) # Omit extensions
 for css_file in ${FILES[*]}; do
     COMBINED=$PATH/""$css_file""
     if [ ! -f "$COMBINED".css ]; then
-        echo "File not found - $CONBINED" >&2
+        echo "File not found - $COMBINED" >&2
     else
         /usr/bin/curl -X POST -s --data-urlencode "input@""$COMBINED"".css" http://cssminifier.com/raw > "$COMBINED".min.css
     fi
