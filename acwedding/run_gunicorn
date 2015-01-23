@@ -2,5 +2,5 @@
 # This script starts gunicorn as a daemon.
 # It is likely useful only in deployment and production.
 
-gunicorn portfolio.wsgi:application --bind 127.0.0.1:8001 --daemon --log-file logs/gunicorn.log --workers=3
+gunicorn acwedding.wsgi:application --bind 127.0.0.1:8001 --daemon --log-file logs/gunicorn.log --workers=3
 
