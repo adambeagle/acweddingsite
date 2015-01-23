@@ -43,6 +43,7 @@ class AccommodationDetailView(BasePointOfInterestDetailView):
 class AccommodationIndexView(BasePointOfInterestIndexView):
     model = Accommodation
     template_name = 'tourisminfo/accommodations_index.html'
+    queryset = Accommodation.objects.exclude(highlight=True)
 
 class PointOfInterestIndexView(BasePointOfInterestIndexView):
     model = PointOfInterest

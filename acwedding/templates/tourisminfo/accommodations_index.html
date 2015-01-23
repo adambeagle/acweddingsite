@@ -2,9 +2,20 @@
 
 {% block page_title %}{% block h2 %}Accommodations{% endblock h2 %}{% endblock page_title %}
 
-{% block page_description %}
-    <p>There are several lodging options available in the Alpena and Presque Isle areas, from chain hotels to locally-owned motels to cabins and cottages.</p>
-{% endblock page_description %}
+{% block page_description_whole %}
+    <section>
+        <h3>Sanctuary Inn</h3>
+        <p>We recommend staying at the Sanctuary Inn near downtown Alpena. We have a block of rooms reserved there at a discounted rate, and we are providing a complimentary shuttle between this hotel and the reception. <a href="/area-information/accommodations/sanctuary-inn/">Click here for more information.</a></p>
+    </section>
+{% endblock page_description_whole %}
+
+{% block categories %} 
+    <section>
+        <h3>Other Options</h3>
+        <p>Below is a list of additional lodging options in the Alpena, Presque Isle, and Hubbard Lake areas. Click an option for more information.</p>
+{% endblock categories %}
+
+{% block post_list %}</section>{% endblock %}
 
 {% block empty_description %}No accommodation information available at this time{% endblock empty_description %}
 

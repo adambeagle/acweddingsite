@@ -2,12 +2,15 @@
 {% load staticfiles %}
 
 {% block content %}
-    <div class="text-center">
-        {% block page_description %}{% endblock %}
-        <p>Click a checkbox to filter list. Click anywhere in a list item to view more information.</p>
-    </div>
+    {% block page_description_whole %}
+        <div class="text-center">
+            {% block page_description %}{% endblock page_description %}
+        </div>
+    {% endblock page_description_whole %}
     
-    <div class="text-center">
+    {% block categories %}
+    <div class="text-center checkbox-group">
+        <em>Click a checkbox to filter list. <br>Click anywhere in a list item to view more information.</em>
         {% for category in categories %}
             <div class="checkbox">
                 <label>
@@ -16,6 +19,7 @@
             </div>
         {% endfor %}
     </div>
+    {% endblock categories %}
     
     <div class="list-group">
         {% for poi in poi_list %}
@@ -31,6 +35,8 @@
             </strong></p>
         {% endfor %}
     </div>
+    
+    {% block post_list %}{% endblock %}
 {% endblock content %}
 
 {% block body_end %}
