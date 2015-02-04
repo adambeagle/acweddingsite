@@ -239,6 +239,23 @@ section ul li {
 	padding-top: 20px;
 }
 
+.checkbox-group p {
+	margin-bottom: 5px;
+}
+
+.areainfo-checkbox {
+	display: inline;
+	padding-right: 5em;
+}
+
+.areainfo-checkbox:last-of-type {
+	padding-right: 0;
+}
+
+.areainfo-list-group {
+	margin-top: 5px;
+}
+
 /* 
 ===========
        FOOTER

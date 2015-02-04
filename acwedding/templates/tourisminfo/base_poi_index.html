@@ -10,9 +10,9 @@
     
     {% block categories %}
     <div class="text-center checkbox-group">
-        <em>Click a checkbox to filter list. <br>Click anywhere in a list item to view more information.</em>
+        <p><em>Click a checkbox to filter list. <br>Click anywhere in a list item to view more information.</em></p>
         {% for category in categories %}
-            <div class="checkbox">
+            <div class="checkbox areainfo-checkbox">
                 <label>
                     <input type="checkbox" name="{{ category.0 }}" checked="true">{{ category.1 }}
                 </label>
@@ -21,7 +21,7 @@
     </div>
     {% endblock categories %}
     
-    <div class="list-group">
+    <div class="list-group areainfo-list-group">
         {% for poi in poi_list %}
             <a href="{% block detail_url %}{% endblock detail_url %}" alt="More information" class="list-group-item {% if poi.highlight %}list-group-item-highlight {% endif %}{{ poi.category }}{% if poi.category2 %} {{ poi.category2 }}{% endif %}">
                     <img src="{% static poi.marker.icon.static_path %}" class="pull-right">
