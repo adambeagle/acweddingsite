@@ -1,9 +1,7 @@
 Purpose
 -------
 
-This repository contains the source code (and static resources, etc.) for a website being built for my upcoming wedding. It is built using Django 1.6. I hope it can serve as a useful example to others who want to build a small Django-powered site. I'm making every effort to follow any best practices of which I'm aware, in particular many described in the book "Two Scoops of Django."
-
-The site is currently somewhere in the mid-to-late stage of local development. The target deployment date is no later than August 2014.
+This repository contains the source code (and static resources, etc.) for the website built for my wedding (May 2015). It was built using Django 1.6. The site is no longer live, but I'll leave this repository here for posterity. 
 
 
 Documentation
